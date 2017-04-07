@@ -1,11 +1,14 @@
 {
   "address": {
     "host": "localhost",
-    "portNo": 1104
+    "portNo": 1200
   },
   "loadBalancerAddress": {
     "host": "localhost",
     "portNo": 1099
   },
-  "sensorType": 1
+  "dbAddress": {
+    "host": "localhost",
+    "portNo": 1201
+  }
 }

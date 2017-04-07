@@ -1,10 +1,10 @@
 {
   "address": {
     "host": "localhost",
-    "portNo": 1100
-  },
-  "dbAddress": {
-    "host": "localhost",
     "portNo": 1101
+  },
+  "loadBalancerAddress": {
+    "host": "localhost",
+    "portNo": 1099
   }
 }

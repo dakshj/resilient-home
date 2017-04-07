@@ -3,9 +3,9 @@
     "host": "localhost",
     "portNo": 1102
   },
-  "gatewayAddress": {
+  "loadBalancerAddress": {
     "host": "localhost",
-    "portNo": 1100
+    "portNo": 1099
   },
   "deviceType": 0
 }
