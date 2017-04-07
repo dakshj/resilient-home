@@ -67,21 +67,7 @@ class Logger {
      * @param log The object to log
      */
     void log(final Log log) {
-        appendLine("" +
-                log.getTime() +
-                ',' +
-                (log.getLogType() != null ? log.getLogType().ordinal() : null) +
-                ',' +
-                log.getId() +
-                ',' +
-                (log.getIoTType() != null ? log.getIoTType().ordinal() : null) +
-                ',' +
-                (log.getSensorType() != null ? log.getSensorType().ordinal() : null) +
-                ',' +
-                (log.getDeviceType() != null ? log.getDeviceType().ordinal() : null) +
-                ',' +
-                log.getMessage()
-        );
+        appendLine(log.toString());
     }
 
     /**

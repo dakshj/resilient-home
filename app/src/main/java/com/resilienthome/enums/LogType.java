@@ -10,5 +10,17 @@ public enum LogType {
     /**
      * Indicates that the Log Type is Inferred; i.e., interpreted by applying logic on past raw logs.
      */
-    INFERRED
+    INFERRED;
+
+    public static LogType from(final int type) {
+        switch (type) {
+            case 0:
+                return RAW;
+
+            case 1:
+                return INFERRED;
+        }
+
+        return null;
+    }
 }
