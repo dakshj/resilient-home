@@ -1,7 +1,29 @@
-# spring17-lab3
-Names and emails of students working on the project:
+# Resilient Home
 
-Student 1:
+Collaborators: [Daksh Jotwani](https://github.com/dakshj), [Nidhi Mundra](https://github.com/nidhimundra)
 
-Student 2:
+## Building the Project
+**Windows**
 
+`gradlew clean`
+
+`gradlew build`
+
+**Unix**
+
+`./gradlew clean`
+
+`./gradlew build`
+
+## Generating a JAR
+**Windows**
+
+`gradlew clean`
+
+`gradlew fatJar`
+
+**Unix**
+
+`./gradlew clean`
+
+`./gradlew fatJar`

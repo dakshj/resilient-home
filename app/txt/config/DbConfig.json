@@ -1,0 +1,10 @@
+{
+  "address": {
+    "host": "localhost",
+    "portNo": 1101
+  },
+  "gatewayAddress": {
+    "host": "localhost",
+    "portNo": 1100
+  }
+}

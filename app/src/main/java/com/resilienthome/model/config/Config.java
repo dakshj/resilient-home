@@ -1,0 +1,14 @@
+package com.resilienthome.model.config;
+
+import com.resilienthome.model.Address;
+
+import java.io.Serializable;
+
+public class Config implements Serializable {
+
+    private Address gatewayAddress;
+
+    public Address getGatewayAddress() {
+        return gatewayAddress;
+    }
+}

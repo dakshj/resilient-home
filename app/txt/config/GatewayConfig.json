@@ -1,0 +1,10 @@
+{
+  "address": {
+    "host": "localhost",
+    "portNo": 1100
+  },
+  "dbAddress": {
+    "host": "localhost",
+    "portNo": 1101
+  }
+}

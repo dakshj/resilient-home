@@ -1,0 +1,7 @@
+{
+  "gatewayAddress": {
+    "host": "localhost",
+    "portNo": 1100
+  },
+  "authorized": true
+}
