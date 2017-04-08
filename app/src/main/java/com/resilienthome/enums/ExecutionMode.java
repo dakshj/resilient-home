@@ -25,7 +25,9 @@ public enum ExecutionMode {
     /**
      * Indicates that a User Server needs to be started.
      */
-    ENTRANT;
+    ENTRANT,
+
+    LOAD_BALANCER;
 
     public static ExecutionMode from(final int mode) {
         switch (mode) {
@@ -43,6 +45,9 @@ public enum ExecutionMode {
 
             case 4:
                 return ENTRANT;
+
+            case 5:
+                return LOAD_BALANCER;
         }
 
         return null;
