@@ -2,9 +2,9 @@ package com.resilienthome.entrant;
 
 import com.resilienthome.enums.IoTType;
 import com.resilienthome.enums.SensorType;
-import com.resilienthome.ioT.device.DeviceServer;
-import com.resilienthome.ioT.gateway.GatewayServer;
-import com.resilienthome.ioT.sensor.SensorServer;
+import com.resilienthome.server.ioT.device.DeviceServer;
+import com.resilienthome.server.ioT.sensor.SensorServer;
+import com.resilienthome.server.loadbalancer.LoadBalancerServer;
 import com.resilienthome.model.Address;
 import com.resilienthome.model.Device;
 import com.resilienthome.model.IoT;
@@ -36,9 +36,9 @@ public class Entrant {
         this.entrantConfig = entrantConfig;
 
         try {
-            System.out.println("Fetching the Map of all Registered IoTs from Gateway...");
+            System.out.println("Fetching the Map of all Registered IoTs from Load-Balancer...");
 
-            setRegisteredIoTs(GatewayServer.connect(entrantConfig.getGatewayAddress())
+            setRegisteredIoTs(LoadBalancerServer.connect(entrantConfig.getLoadBalancerAddress())
                     .fetchRegisteredIoTs());
 
             System.out.println("Successfully fetched.");
@@ -106,7 +106,8 @@ public class Entrant {
         }
 
         try {
-            GatewayServer.connect(getEntrantConfig().getGatewayAddress()).entrantExecutionFinished();
+            LoadBalancerServer.connect(getEntrantConfig().getLoadBalancerAddress())
+                    .entrantExecutionFinished();
         } catch (RemoteException | NotBoundException e) {
             e.printStackTrace();
         }

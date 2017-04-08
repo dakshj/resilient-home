@@ -6,9 +6,9 @@ import java.io.Serializable;
 
 public class Config implements Serializable {
 
-    private Address gatewayAddress;
+    private Address loadBalancerAddress;
 
-    public Address getGatewayAddress() {
-        return gatewayAddress;
+    public Address getLoadBalancerAddress() {
+        return loadBalancerAddress;
     }
 }

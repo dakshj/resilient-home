@@ -1,6 +1,6 @@
-package com.resilienthome.ioT.db;
+package com.resilienthome.server.ioT.db;
 
-import com.resilienthome.ioT.IoTServer;
+import com.resilienthome.server.ioT.IoTServer;
 import com.resilienthome.model.Address;
 import com.resilienthome.model.Device;
 import com.resilienthome.model.Log;

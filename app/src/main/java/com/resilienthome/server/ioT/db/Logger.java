@@ -1,4 +1,4 @@
-package com.resilienthome.ioT.db;
+package com.resilienthome.server.ioT.db;
 
 import com.resilienthome.exception.LogFileCreationFailedException;
 import com.resilienthome.model.Log;

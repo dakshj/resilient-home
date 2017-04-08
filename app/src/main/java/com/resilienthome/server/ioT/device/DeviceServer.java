@@ -1,6 +1,6 @@
-package com.resilienthome.ioT.device;
+package com.resilienthome.server.ioT.device;
 
-import com.resilienthome.ioT.IoTServer;
+import com.resilienthome.server.ioT.IoTServer;
 import com.resilienthome.model.Address;
 
 import java.rmi.NotBoundException;

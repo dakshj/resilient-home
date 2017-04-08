@@ -1,12 +1,8 @@
-package com.resilienthome.ioT.gateway;
+package com.resilienthome.server.ioT.gateway;
 
 import com.resilienthome.enums.DeviceType;
 import com.resilienthome.enums.IoTType;
 import com.resilienthome.enums.SensorType;
-import com.resilienthome.ioT.IoTServerImpl;
-import com.resilienthome.ioT.db.DbServer;
-import com.resilienthome.ioT.device.DeviceServer;
-import com.resilienthome.ioT.sensor.SensorServer;
 import com.resilienthome.model.Address;
 import com.resilienthome.model.Device;
 import com.resilienthome.model.IoT;
@@ -16,19 +12,33 @@ import com.resilienthome.model.sensor.DoorSensor;
 import com.resilienthome.model.sensor.MotionSensor;
 import com.resilienthome.model.sensor.Sensor;
 import com.resilienthome.model.sensor.TemperatureSensor;
+import com.resilienthome.server.ioT.IoTServerImpl;
+import com.resilienthome.server.ioT.db.DbServer;
+import com.resilienthome.server.ioT.device.DeviceServer;
+import com.resilienthome.server.ioT.sensor.SensorServer;
+import com.resilienthome.server.loadbalancer.LoadBalancerServer;
 import com.resilienthome.util.LimitedSizeArrayList;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
 public class GatewayServerImpl extends IoTServerImpl implements GatewayServer {
 
+    // TODO
+    // All functions related to "all IoTs" will not work since IoTs may be assigned to
+    // different Gateways, and thus each Gateway will not have complete information
+    // of all registered IoTs
+
+    private final Map<IoT, Address> registeredIoTs;
+
     private boolean alreadyRaisedAlarm;
 
     public GatewayServerImpl(final GatewayConfig gatewayConfig) throws RemoteException {
-        super(gatewayConfig, false);
+        super(gatewayConfig);
+        registeredIoTs = new HashMap<>();
     }
 
     @Override
@@ -41,15 +51,19 @@ public class GatewayServerImpl extends IoTServerImpl implements GatewayServer {
         return NAME;
     }
 
-    @Override
-    public void setRegisteredIoTs(final Map<IoT, Address> registeredIoTs) throws RemoteException {
-        // No-op
+    private Map<IoT, Address> getRegisteredIoTs() {
+        return registeredIoTs;
     }
 
     @Override
     public void register(final IoT ioT, final Address address)
             throws RemoteException {
         getRegisteredIoTs().put(ioT, address);
+    }
+
+    @Override
+    public void deRegister(final IoT ioT) throws RemoteException {
+        getRegisteredIoTs().remove(ioT);
     }
 
     @Override
@@ -81,6 +95,7 @@ public class GatewayServerImpl extends IoTServerImpl implements GatewayServer {
                         dbServer.motionDetected(motionSensor);
 
                     {
+                        // TODO will not work unless all DB Servers have synchronized data
                         final LimitedSizeArrayList<Log> youngestLogsList =
                                 dbServer.getYoungestLogsList();
 
@@ -100,6 +115,7 @@ public class GatewayServerImpl extends IoTServerImpl implements GatewayServer {
                         dbServer.doorToggled(doorSensor);
 
                     {
+                        // TODO will not work unless all DB Servers have synchronized data
                         final LimitedSizeArrayList<Log> youngestLogsList =
                                 dbServer.getYoungestLogsList();
 
@@ -136,11 +152,6 @@ public class GatewayServerImpl extends IoTServerImpl implements GatewayServer {
         } catch (RemoteException | NotBoundException e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public Map<IoT, Address> fetchRegisteredIoTs() throws RemoteException {
-        return getRegisteredIoTs();
     }
 
     @Override
@@ -187,13 +198,18 @@ public class GatewayServerImpl extends IoTServerImpl implements GatewayServer {
     }
 
     private void someoneEnteredHome(final boolean atHome) {
-        if (!isRemotePresenceSensorActivated()) {
-            try {
-                DbServer.connect(getGatewayConfig().getDbAddress()).intruderEntered();
-            } catch (RemoteException | NotBoundException e) {
-                e.printStackTrace();
+        try {
+            if (!LoadBalancerServer.connect(getGatewayConfig().getLoadBalancerAddress())
+                    .isRemotePresenceSensorActivated()) {
+                try {
+                    DbServer.connect(getGatewayConfig().getDbAddress()).intruderEntered();
+                } catch (RemoteException | NotBoundException e) {
+                    e.printStackTrace();
+                }
+                return;
             }
-            return;
+        } catch (RemoteException | NotBoundException e) {
+            e.printStackTrace();
         }
 
         try {

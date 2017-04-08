@@ -1,8 +1,8 @@
-package com.resilienthome.ioT.device;
+package com.resilienthome.server.ioT.device;
 
 import com.resilienthome.enums.IoTType;
-import com.resilienthome.ioT.IoTServerImpl;
-import com.resilienthome.ioT.gateway.GatewayServer;
+import com.resilienthome.server.ioT.IoTServerImpl;
+import com.resilienthome.server.ioT.gateway.GatewayServer;
 import com.resilienthome.model.Device;
 import com.resilienthome.model.IoT;
 import com.resilienthome.model.config.DeviceConfig;
@@ -14,7 +14,7 @@ import java.util.UUID;
 public class DeviceServerImpl extends IoTServerImpl implements DeviceServer {
 
     public DeviceServerImpl(final DeviceConfig deviceConfig) throws RemoteException {
-        super(deviceConfig, true);
+        super(deviceConfig);
     }
 
     @Override
@@ -38,8 +38,7 @@ public class DeviceServerImpl extends IoTServerImpl implements DeviceServer {
     @Override
     public void queryState() throws RemoteException {
         try {
-            GatewayServer.connect(getDeviceConfig().getGatewayAddress())
-                    .reportState(getDevice());
+            GatewayServer.connect(getGatewayAddress()).reportState(getDevice());
         } catch (NotBoundException e) {
             e.printStackTrace();
         }

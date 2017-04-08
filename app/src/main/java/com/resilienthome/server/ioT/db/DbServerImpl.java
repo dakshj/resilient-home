@@ -1,8 +1,7 @@
-package com.resilienthome.ioT.db;
+package com.resilienthome.server.ioT.db;
 
 import com.resilienthome.enums.IoTType;
 import com.resilienthome.enums.LogType;
-import com.resilienthome.ioT.IoTServerImpl;
 import com.resilienthome.model.Device;
 import com.resilienthome.model.IoT;
 import com.resilienthome.model.Log;
@@ -10,6 +9,7 @@ import com.resilienthome.model.config.ServerConfig;
 import com.resilienthome.model.sensor.DoorSensor;
 import com.resilienthome.model.sensor.MotionSensor;
 import com.resilienthome.model.sensor.TemperatureSensor;
+import com.resilienthome.server.ioT.IoTServerImpl;
 import com.resilienthome.util.LimitedSizeArrayList;
 
 import java.rmi.RemoteException;
@@ -23,7 +23,7 @@ public class DbServerImpl extends IoTServerImpl implements DbServer {
     private final LimitedSizeArrayList<Log> youngestLogsList;
 
     public DbServerImpl(final ServerConfig serverConfig) throws RemoteException {
-        super(serverConfig, true);
+        super(serverConfig);
         logger = new Logger();
         youngestLogsList = new LimitedSizeArrayList<>(YOUNGEST_LOGS_LIST_SIZE);
     }

@@ -1,6 +1,7 @@
-package com.resilienthome.ioT.sensor;
+package com.resilienthome.server.ioT.sensor;
 
-import com.resilienthome.ioT.IoTServer;
+import com.resilienthome.server.ioT.IoTServer;
+import com.resilienthome.server.ioT.gateway.GatewayServer;
 import com.resilienthome.model.Address;
 
 import java.rmi.NotBoundException;
@@ -34,7 +35,7 @@ public interface SensorServer extends IoTServer {
     void queryState() throws RemoteException;
 
     /**
-     * Triggers the Motion Sensor, and notifies the Gateway Server.
+     * Triggers the Motion Sensor, and notifies the {@link GatewayServer}.
      * <p>
      * Additionally, if the Entrant is not authorized, raises the security system's alarm.
      *

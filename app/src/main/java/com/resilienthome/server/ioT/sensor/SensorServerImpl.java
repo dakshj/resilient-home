@@ -1,9 +1,7 @@
-package com.resilienthome.ioT.sensor;
+package com.resilienthome.server.ioT.sensor;
 
 import com.resilienthome.enums.IoTType;
 import com.resilienthome.enums.SensorType;
-import com.resilienthome.ioT.IoTServerImpl;
-import com.resilienthome.ioT.gateway.GatewayServer;
 import com.resilienthome.model.IoT;
 import com.resilienthome.model.config.SensorConfig;
 import com.resilienthome.model.sensor.DoorSensor;
@@ -11,6 +9,9 @@ import com.resilienthome.model.sensor.MotionSensor;
 import com.resilienthome.model.sensor.PresenceSensor;
 import com.resilienthome.model.sensor.Sensor;
 import com.resilienthome.model.sensor.TemperatureSensor;
+import com.resilienthome.server.ioT.IoTServerImpl;
+import com.resilienthome.server.ioT.gateway.GatewayServer;
+import com.resilienthome.server.loadbalancer.LoadBalancerServer;
 
 import java.math.BigDecimal;
 import java.rmi.NotBoundException;
@@ -22,11 +23,8 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class SensorServerImpl extends IoTServerImpl implements SensorServer {
 
-    private final SensorConfig sensorConfig;
-
     public SensorServerImpl(final SensorConfig sensorConfig) throws RemoteException {
-        super(sensorConfig, true);
-        this.sensorConfig = sensorConfig;
+        super(sensorConfig);
 
         if (getSensor().getSensorType() == SensorType.TEMPERATURE) {
             periodicallyGenerateTemperatureValues();
@@ -64,8 +62,7 @@ public class SensorServerImpl extends IoTServerImpl implements SensorServer {
     @Override
     public void queryState() throws RemoteException {
         try {
-            GatewayServer.connect(getSensorConfig().getGatewayAddress())
-                    .reportState(getSensor());
+            GatewayServer.connect(getGatewayAddress()).reportState(getSensor());
         } catch (NotBoundException e) {
             e.printStackTrace();
         }
@@ -81,8 +78,13 @@ public class SensorServerImpl extends IoTServerImpl implements SensorServer {
 
         queryState();
 
-        if (!isRemotePresenceSensorActivated()) {
-            raiseRemoteAlarm();
+        try {
+            if (!LoadBalancerServer.connect(getSensorConfig().getLoadBalancerAddress())
+                    .isRemotePresenceSensorActivated()) {
+                raiseRemoteAlarm();
+            }
+        } catch (NotBoundException e) {
+            e.printStackTrace();
         }
     }
 
