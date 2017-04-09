@@ -70,7 +70,8 @@ public abstract class IoTServerImpl extends ServerImpl implements IoTServer {
         return gatewayAddress;
     }
 
-    private void setGatewayAddress(final Address gatewayAddress) {
+    @Override
+    public void setGatewayAddress(final Address gatewayAddress) throws RemoteException {
         this.gatewayAddress = gatewayAddress;
     }
 

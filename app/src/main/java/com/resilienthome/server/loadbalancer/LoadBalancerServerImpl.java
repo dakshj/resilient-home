@@ -9,6 +9,7 @@ import com.resilienthome.model.IoT;
 import com.resilienthome.model.config.ServerConfig;
 import com.resilienthome.model.sensor.Sensor;
 import com.resilienthome.server.ServerImpl;
+import com.resilienthome.server.ioT.device.DeviceServer;
 import com.resilienthome.server.ioT.gateway.GatewayServer;
 import com.resilienthome.server.ioT.sensor.SensorServer;
 
@@ -148,8 +149,30 @@ public class LoadBalancerServerImpl extends ServerImpl implements LoadBalancerSe
         getGatewayAssignments().remove(gatewayAssignment);
 
         System.out.println("Reassigning IoTs to new Gateways...");
-        gatewayAssignment.getIoTs().forEach(ioT ->
-                assignIoTToLeastLoadedGateway(ioT, getRegisteredIoTs().get(ioT)));
+        gatewayAssignment.getIoTs().forEach(ioT -> {
+            final Address gatewayAddress = assignIoTToLeastLoadedGateway(ioT, getRegisteredIoTs().get(ioT));
+
+            // Send the updated Gateway Address to the IoT
+            switch (ioT.getIoTType()) {
+                case SENSOR:
+                    try {
+                        SensorServer.connect(getRegisteredIoTs().get(ioT))
+                                .setGatewayAddress(gatewayAddress);
+                    } catch (RemoteException | NotBoundException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+
+                case DEVICE:
+                    try {
+                        DeviceServer.connect(getRegisteredIoTs().get(ioT))
+                                .setGatewayAddress(gatewayAddress);
+                    } catch (RemoteException | NotBoundException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+            }
+        });
     }
 
     private Map<IoT, Address> getRegisteredGateways() {
