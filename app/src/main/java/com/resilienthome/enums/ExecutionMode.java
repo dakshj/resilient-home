@@ -3,6 +3,11 @@ package com.resilienthome.enums;
 public enum ExecutionMode {
 
     /**
+     * Indicates that a Load Balancer Server needs to be started.
+     */
+    LOAD_BALANCER,
+
+    /**
      * Indicates that a Gateway Server needs to be started.
      */
     GATEWAY,
@@ -25,29 +30,27 @@ public enum ExecutionMode {
     /**
      * Indicates that a User Server needs to be started.
      */
-    ENTRANT,
-
-    LOAD_BALANCER;
+    ENTRANT;
 
     public static ExecutionMode from(final int mode) {
         switch (mode) {
             case 0:
-                return GATEWAY;
+                return LOAD_BALANCER;
 
             case 1:
-                return DB;
+                return GATEWAY;
 
             case 2:
-                return SENSOR;
+                return DB;
 
             case 3:
-                return DEVICE;
+                return SENSOR;
 
             case 4:
-                return ENTRANT;
+                return DEVICE;
 
             case 5:
-                return LOAD_BALANCER;
+                return ENTRANT;
         }
 
         return null;

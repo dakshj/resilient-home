@@ -2,16 +2,16 @@ package com.resilienthome;
 
 import com.resilienthome.entrant.Entrant;
 import com.resilienthome.enums.ExecutionMode;
-import com.resilienthome.server.ioT.db.DbServerImpl;
-import com.resilienthome.server.ioT.device.DeviceServerImpl;
-import com.resilienthome.server.ioT.gateway.GatewayServerImpl;
-import com.resilienthome.server.ioT.sensor.SensorServerImpl;
-import com.resilienthome.server.loadbalancer.LoadBalancerServerImpl;
 import com.resilienthome.model.config.DeviceConfig;
 import com.resilienthome.model.config.EntrantConfig;
 import com.resilienthome.model.config.GatewayConfig;
 import com.resilienthome.model.config.SensorConfig;
 import com.resilienthome.model.config.ServerConfig;
+import com.resilienthome.server.ioT.db.DbServerImpl;
+import com.resilienthome.server.ioT.device.DeviceServerImpl;
+import com.resilienthome.server.ioT.gateway.GatewayServerImpl;
+import com.resilienthome.server.ioT.sensor.SensorServerImpl;
+import com.resilienthome.server.loadbalancer.LoadBalancerServerImpl;
 import com.resilienthome.util.ConfigReader;
 
 import java.net.UnknownHostException;
@@ -22,17 +22,17 @@ public class Main {
      * @param args <p>
      *             args[0]:
      *             <p>
-     *             Use "0" to start a Gateway Server
+     *             Use "0" to start a Load Balancer Server
      *             <p>
-     *             Use "1" to start a DB Server
+     *             Use "1" to start a Gateway Server
      *             <p>
-     *             Use "2" to start a Sensor Server
+     *             Use "2" to start a DB Server
      *             <p>
-     *             Use "3" to start a Device Server
+     *             Use "3" to start a Sensor Server
      *             <p>
-     *             Use "4" to start an Entrant Server
+     *             Use "4" to start a Device Server
      *             <p>
-     *             Use "5" to start a Load Balancer Server
+     *             Use "5" to start an Entrant
      *             <p>
      *             <p>
      *             args[1]:
@@ -58,6 +58,13 @@ public class Main {
         String configFilePath = args[1];
 
         switch (executionMode) {
+            case LOAD_BALANCER: {
+                ConfigReader<ServerConfig> reader = new ConfigReader<>(ServerConfig.class);
+                final ServerConfig serverConfig = reader.read(configFilePath);
+                new LoadBalancerServerImpl(serverConfig);
+            }
+            break;
+
             case GATEWAY: {
                 ConfigReader<GatewayConfig> reader = new ConfigReader<>(GatewayConfig.class);
                 final GatewayConfig gatewayConfig = reader.read(configFilePath);
@@ -90,13 +97,6 @@ public class Main {
                 ConfigReader<EntrantConfig> reader = new ConfigReader<>(EntrantConfig.class);
                 final EntrantConfig entrantConfig = reader.read(configFilePath);
                 new Entrant(entrantConfig);
-            }
-            break;
-
-            case LOAD_BALANCER: {
-                ConfigReader<ServerConfig> reader = new ConfigReader<>(ServerConfig.class);
-                final ServerConfig serverConfig = reader.read(configFilePath);
-                new LoadBalancerServerImpl(serverConfig);
             }
             break;
         }
