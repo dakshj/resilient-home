@@ -8,7 +8,7 @@ import com.resilienthome.enums.SensorType;
 import java.io.Serializable;
 import java.util.UUID;
 
-public class Log implements Serializable {
+public class Log implements Serializable, Comparable<Log> {
 
     private static final char DELIMITER = '`';
 
@@ -31,7 +31,7 @@ public class Log implements Serializable {
         this.message = message;
     }
 
-    public long getTime() {
+    private long getTime() {
         return time;
     }
 
@@ -57,6 +57,11 @@ public class Log implements Serializable {
 
     public String getMessage() {
         return message;
+    }
+
+    @Override
+    public int compareTo(final Log log) {
+        return Long.compare(getTime(), log.getTime());
     }
 
     @Override
