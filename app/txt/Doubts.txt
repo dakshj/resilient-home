@@ -1,0 +1,8 @@
+TODO Delete this file after all doubts have been solved!
+
+1.
+"A gateway node needs to dynamically determine the failure of the other replica (this can be done
+by any method that you choose such as exchanging "I am alive" heartbeat messages)"
+
+Since we've build a Load Balancer, *that* is what is dynamically determining the live-status
+of all gateways. Is that fine?
