@@ -86,16 +86,16 @@ public class LoadBalancerServerImpl extends ServerImpl implements LoadBalancerSe
 
         if (success) {
             System.out.println("Ping successful.");
+
+            new Timer().schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    startPeriodicGatewayPinging(gateway);
+                }
+            }, GATEWAY_PING_DELAY);
         } else {
             gatewayDown(gateway);
         }
-
-        new Timer().schedule(new TimerTask() {
-            @Override
-            public void run() {
-                startPeriodicGatewayPinging(gateway);
-            }
-        }, GATEWAY_PING_DELAY);
     }
 
     private Address assignIoTToLeastLoadedGateway(final IoT ioT, final Address address) {
