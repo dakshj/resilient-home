@@ -27,11 +27,6 @@ import java.util.UUID;
 
 public class GatewayServerImpl extends IoTServerImpl implements GatewayServer {
 
-    // TODO
-    // All functions related to "all IoTs" will not work since IoTs may be assigned to
-    // different Gateways, and thus each Gateway will not have complete information
-    // of all registered IoTs
-
     private final Map<IoT, Address> registeredIoTs;
 
     private boolean alreadyRaisedAlarm;
@@ -56,8 +51,7 @@ public class GatewayServerImpl extends IoTServerImpl implements GatewayServer {
     }
 
     @Override
-    public void register(final IoT ioT, final Address address)
-            throws RemoteException {
+    public void register(final IoT ioT, final Address address) throws RemoteException {
         getRegisteredIoTs().put(ioT, address);
     }
 
