@@ -68,9 +68,10 @@ public interface GatewayServer extends IoTServer {
     /**
      * Notifies that the Entrant has finished its execution.
      *
+     * @param time The time at which the entrant execution finished
      * @throws RemoteException Thrown when a Java RMI exception occurs
      */
-    void entrantExecutionFinished() throws RemoteException;
+    void entrantExecutionFinished(final long time) throws RemoteException;
 
     /**
      * Pings this {@link GatewayServer} to check if it is alive or not.

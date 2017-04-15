@@ -99,6 +99,12 @@ public class DbServerImpl extends IoTServerImpl implements DbServer {
     }
 
     @Override
+    public void intruderTrapped(final long time) throws RemoteException {
+        getLogger().log(new Log(time, LogType.INFERRED, null, null, null, null,
+                "Intruder was trapped in the Resilient Home."));
+    }
+
+    @Override
     public LimitedSizeArrayList<Log> getYoungestLogsList() throws RemoteException {
         return youngestLogsList;
     }

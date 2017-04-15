@@ -207,21 +207,24 @@ public class LoadBalancerServerImpl extends ServerImpl implements LoadBalancerSe
     }
 
     /**
-     * Concurrently calls {@link GatewayServer#entrantExecutionFinished()}
-     * for all registered Gateways.
+     * Calls {@link GatewayServer#entrantExecutionFinished(long)} for all registered Gateways.
      *
      * @throws RemoteException Thrown when a Java RMI exception occurs
      */
     @Override
     public void entrantExecutionFinished() throws RemoteException {
+        final long time = System.currentTimeMillis();
+
         getRegisteredGateways().values()
-                .forEach(address -> new Thread(() -> {
+                .forEach(address -> {
                     try {
-                        GatewayServer.connect(address).entrantExecutionFinished();
+                        GatewayServer.connect(address).entrantExecutionFinished(time);
                     } catch (RemoteException | NotBoundException e) {
                         e.printStackTrace();
                     }
-                }).start());
+                });
+
+        resetAllPresenceSensorsToInactive();
     }
 
     @Override
@@ -243,6 +246,21 @@ public class LoadBalancerServerImpl extends ServerImpl implements LoadBalancerSe
                 });
 
         return authorizedUser[0];
+    }
+
+    private void resetAllPresenceSensorsToInactive() {
+        getRegisteredIoTs().keySet().stream()
+                .filter(ioT -> ioT.getIoTType() == IoTType.SENSOR)
+                .map(ioT -> ((Sensor) ioT))
+                .filter(sensor -> sensor.getSensorType() == SensorType.PRESENCE)
+                .map(sensor -> getRegisteredIoTs().get(sensor))
+                .forEach(address -> new Thread(() -> {
+                    try {
+                        SensorServer.connect(address).setPresenceServerActivated(false);
+                    } catch (RemoteException | NotBoundException e) {
+                        e.printStackTrace();
+                    }
+                }).start());
     }
 
     @Override

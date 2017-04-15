@@ -88,6 +88,14 @@ public interface DbServer extends IoTServer {
     void userEntered(final long time, final boolean atHome) throws RemoteException;
 
     /**
+     * Logs the inferred log that an intruder was trapped within the Resilient Home.
+     *
+     * @param time The time at which the intruder was trapped
+     * @throws RemoteException Thrown when a Java RMI exception occurs
+     */
+    void intruderTrapped(final long time) throws RemoteException;
+
+    /**
      * Returns a limited-size list of the latest inserted {@link Log}s.
      *
      * @return A limited-size list of the latest inserted {@link Log}s

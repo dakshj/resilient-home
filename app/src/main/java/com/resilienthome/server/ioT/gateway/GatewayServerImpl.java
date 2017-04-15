@@ -15,7 +15,6 @@ import com.resilienthome.model.sensor.TemperatureSensor;
 import com.resilienthome.server.ioT.IoTServerImpl;
 import com.resilienthome.server.ioT.db.DbServer;
 import com.resilienthome.server.ioT.device.DeviceServer;
-import com.resilienthome.server.ioT.sensor.SensorServer;
 import com.resilienthome.server.loadbalancer.LoadBalancerServer;
 import com.resilienthome.util.LimitedSizeArrayList;
 
@@ -26,6 +25,8 @@ import java.util.Map;
 import java.util.UUID;
 
 public class GatewayServerImpl extends IoTServerImpl implements GatewayServer {
+
+    // TODO add souts for cache fetching
 
     private final Map<IoT, Address> registeredIoTs;
 
@@ -180,9 +181,17 @@ public class GatewayServerImpl extends IoTServerImpl implements GatewayServer {
     }
 
     @Override
-    public void entrantExecutionFinished() throws RemoteException {
+    public void entrantExecutionFinished(final long time) throws RemoteException {
         alreadyRaisedAlarm = false;
-        resetAllPresenceSensorsToInactive();
+
+        try {
+            if (!LoadBalancerServer.connect(getGatewayConfig().getLoadBalancerAddress())
+                    .isRemotePresenceSensorActivated()) {
+                DbServer.connect(getGatewayConfig().getDbAddress()).intruderTrapped(time);
+            }
+        } catch (NotBoundException e) {
+            e.printStackTrace();
+        }
     }
 
     private void switchOffAllOutlets() {
@@ -242,20 +251,5 @@ public class GatewayServerImpl extends IoTServerImpl implements GatewayServer {
         if (!atHome) {
             switchOffAllOutlets();
         }
-    }
-
-    private void resetAllPresenceSensorsToInactive() {
-        getRegisteredIoTs().keySet().stream()
-                .filter(ioT -> ioT.getIoTType() == IoTType.SENSOR)
-                .map(ioT -> ((Sensor) ioT))
-                .filter(sensor -> sensor.getSensorType() == SensorType.PRESENCE)
-                .map(sensor -> getRegisteredIoTs().get(sensor))
-                .forEach(address -> new Thread(() -> {
-                    try {
-                        SensorServer.connect(address).setPresenceServerActivated(false);
-                    } catch (RemoteException | NotBoundException e) {
-                        e.printStackTrace();
-                    }
-                }).start());
     }
 }
