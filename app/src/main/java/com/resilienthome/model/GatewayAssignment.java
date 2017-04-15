@@ -33,7 +33,7 @@ public class GatewayAssignment implements Comparable<GatewayAssignment> {
         getIoTs().remove(ioT);
     }
 
-    private int size() {
+    public int size() {
         return ioTs.size();
     }
 

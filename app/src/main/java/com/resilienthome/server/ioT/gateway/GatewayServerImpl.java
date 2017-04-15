@@ -28,7 +28,7 @@ public class GatewayServerImpl extends IoTServerImpl implements GatewayServer {
 
     // TODO add souts for cache fetching
 
-    private final Map<IoT, Address> registeredIoTs;
+    private Map<IoT, Address> registeredIoTs;
 
     private boolean alreadyRaisedAlarm;
 
@@ -48,6 +48,10 @@ public class GatewayServerImpl extends IoTServerImpl implements GatewayServer {
     }
 
     private Map<IoT, Address> getRegisteredIoTs() {
+        if (registeredIoTs == null) {
+            registeredIoTs = new HashMap<>();
+        }
+
         return registeredIoTs;
     }
 

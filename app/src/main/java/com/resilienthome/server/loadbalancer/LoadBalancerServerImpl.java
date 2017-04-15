@@ -57,6 +57,8 @@ public class LoadBalancerServerImpl extends ServerImpl implements LoadBalancerSe
                     System.out.println("Starting periodic pinging to Gateway " + ioT.getId() + "...");
                     startPeriodicGatewayPinging(ioT);
                 }
+
+                reBalanceGatewayAssignmentsIfRequired();
                 return null;
 
             case SENSOR:
@@ -111,19 +113,7 @@ public class LoadBalancerServerImpl extends ServerImpl implements LoadBalancerSe
         System.out.println("Assigning " + ioT + " " + ioT.getId()
                 + " to the least loaded Gateway...");
 
-        // Remove previous Gateway assignment, in case an IoT calls register more than once
-        getGatewayAssignments().stream()
-                .filter(gatewayAssignment -> gatewayAssignment.containsIoT(ioT))
-                .forEach(gatewayAssignment -> {
-                    gatewayAssignment.removeIoT(ioT);
-                    try {
-                        GatewayServer.connect(getRegisteredGateways()
-                                .get(gatewayAssignment.getGateway()))
-                                .deRegister(ioT);
-                    } catch (RemoteException | NotBoundException e) {
-                        e.printStackTrace();
-                    }
-                });
+        removeGatewayIoTAssignment(ioT);
 
         // Sort the List -> Assign IoT to least loaded Gateway -> Sort the List
         Collections.sort(getGatewayAssignments());
@@ -145,6 +135,56 @@ public class LoadBalancerServerImpl extends ServerImpl implements LoadBalancerSe
         }
 
         return getRegisteredGateways().get(assignment.getGateway());
+    }
+
+    /**
+     * Removes the previous Gateway assignment of an IoT.
+     *
+     * @param ioT The IoT whose assignment needs to be removed
+     */
+    private void removeGatewayIoTAssignment(final IoT ioT) {
+        getGatewayAssignments().stream()
+                .filter(gatewayAssignment -> gatewayAssignment.containsIoT(ioT))
+                .forEach(gatewayAssignment -> {
+                    gatewayAssignment.removeIoT(ioT);
+                    try {
+                        GatewayServer.connect(getRegisteredGateways()
+                                .get(gatewayAssignment.getGateway()))
+                                .deRegister(ioT);
+                    } catch (RemoteException | NotBoundException e) {
+                        e.printStackTrace();
+                    }
+                });
+    }
+
+    /**
+     * Re-balances the assigned IoTs among Gateways if the
+     * highest-loaded Gateway has two more assigned IoTs than the
+     * lowest-loaded Gateway.
+     */
+    private void reBalanceGatewayAssignmentsIfRequired() {
+        Collections.sort(getGatewayAssignments());
+        if (getGatewayAssignments().size() < 2 ||
+                getGatewayAssignments().get(getGatewayAssignments().size() - 1).size() -
+                        getGatewayAssignments().get(0).size() < 2) {
+            return;
+        }
+
+        final GatewayAssignment gatewayAssignment =
+                getGatewayAssignments().get(getGatewayAssignments().size() - 1);
+
+        IoT ioTToReassign = null;
+
+        if (gatewayAssignment.getIoTs().iterator().hasNext()) {
+            ioTToReassign = gatewayAssignment.getIoTs().iterator().next();
+        }
+
+        if (ioTToReassign != null) {
+            removeGatewayIoTAssignment(ioTToReassign);
+            assignIoTToLeastLoadedGateway(ioTToReassign, getRegisteredIoTs().get(ioTToReassign));
+        }
+
+        reBalanceGatewayAssignmentsIfRequired();
     }
 
     /**
