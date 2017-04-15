@@ -61,7 +61,7 @@ public class GatewayServerImpl extends IoTServerImpl implements GatewayServer {
     }
 
     @Override
-    public void reportState(final IoT ioT) throws RemoteException {
+    public void reportState(final long time, final IoT ioT) throws RemoteException {
         DbServer dbServer = null;
 
         try {
@@ -81,12 +81,12 @@ public class GatewayServerImpl extends IoTServerImpl implements GatewayServer {
                         final TemperatureSensor temperatureSensor = ((TemperatureSensor) sensor);
                         System.out.println("State of " + temperatureSensor + " : "
                                 + temperatureSensor.getData() + "°F.");
-                        dbServer.temperatureChanged(temperatureSensor);
+                        dbServer.temperatureChanged(time, temperatureSensor);
                         break;
 
                     case MOTION:
                         final MotionSensor motionSensor = ((MotionSensor) sensor);
-                        dbServer.motionDetected(motionSensor);
+                        dbServer.motionDetected(time, motionSensor);
 
                     {
                         // TODO will not work unless all DB Servers have synchronized data
@@ -97,7 +97,7 @@ public class GatewayServerImpl extends IoTServerImpl implements GatewayServer {
                                 youngestLogsList.getEldest().getIoTType() == IoTType.SENSOR &&
                                 youngestLogsList.getEldest().getSensorType() != null &&
                                 youngestLogsList.getEldest().getSensorType() == SensorType.DOOR) {
-                            someoneEnteredHome(true);
+                            someoneEnteredHome(time, true);
                         }
                     }
                     break;
@@ -106,7 +106,7 @@ public class GatewayServerImpl extends IoTServerImpl implements GatewayServer {
                         final DoorSensor doorSensor = ((DoorSensor) sensor);
                         System.out.println("State of " + doorSensor + " : "
                                 + (doorSensor.getData() ? "Open" : "Closed") + ".");
-                        dbServer.doorToggled(doorSensor);
+                        dbServer.doorToggled(time, doorSensor);
 
                     {
                         // TODO will not work unless all DB Servers have synchronized data
@@ -117,7 +117,7 @@ public class GatewayServerImpl extends IoTServerImpl implements GatewayServer {
                                 youngestLogsList.getEldest().getIoTType() == IoTType.SENSOR &&
                                 youngestLogsList.getEldest().getSensorType() != null &&
                                 youngestLogsList.getEldest().getSensorType() == SensorType.MOTION) {
-                            someoneEnteredHome(false);
+                            someoneEnteredHome(time, false);
                         }
                     }
                     break;
@@ -128,7 +128,7 @@ public class GatewayServerImpl extends IoTServerImpl implements GatewayServer {
                 final Device device = ((Device) ioT);
                 System.out.println("State of " + device + " : "
                         + (device.getState() ? "On" : "Off") + ".");
-                dbServer.deviceToggled(device);
+                dbServer.deviceToggled(time, device);
                 break;
         }
     }
@@ -191,12 +191,12 @@ public class GatewayServerImpl extends IoTServerImpl implements GatewayServer {
         return ((GatewayConfig) getServerConfig());
     }
 
-    private void someoneEnteredHome(final boolean atHome) {
+    private void someoneEnteredHome(final long time, final boolean atHome) {
         try {
             if (!LoadBalancerServer.connect(getGatewayConfig().getLoadBalancerAddress())
                     .isRemotePresenceSensorActivated()) {
                 try {
-                    DbServer.connect(getGatewayConfig().getDbAddress()).intruderEntered();
+                    DbServer.connect(getGatewayConfig().getDbAddress()).intruderEntered(time);
                 } catch (RemoteException | NotBoundException e) {
                     e.printStackTrace();
                 }
@@ -207,7 +207,7 @@ public class GatewayServerImpl extends IoTServerImpl implements GatewayServer {
         }
 
         try {
-            DbServer.connect(getGatewayConfig().getDbAddress()).userEntered(atHome);
+            DbServer.connect(getGatewayConfig().getDbAddress()).userEntered(time, atHome);
         } catch (RemoteException | NotBoundException e) {
             e.printStackTrace();
         }

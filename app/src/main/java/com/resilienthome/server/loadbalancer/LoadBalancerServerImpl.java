@@ -109,7 +109,8 @@ public class LoadBalancerServerImpl extends ServerImpl implements LoadBalancerSe
                 .forEach(gatewayAssignment -> {
                     gatewayAssignment.removeIoT(ioT);
                     try {
-                        GatewayServer.connect(getRegisteredGateways().get(gatewayAssignment.getGateway()))
+                        GatewayServer.connect(getRegisteredGateways()
+                                .get(gatewayAssignment.getGateway()))
                                 .deRegister(ioT);
                     } catch (RemoteException | NotBoundException e) {
                         e.printStackTrace();
@@ -150,7 +151,8 @@ public class LoadBalancerServerImpl extends ServerImpl implements LoadBalancerSe
 
         System.out.println("Reassigning IoTs to new Gateways...");
         gatewayAssignment.getIoTs().forEach(ioT -> {
-            final Address gatewayAddress = assignIoTToLeastLoadedGateway(ioT, getRegisteredIoTs().get(ioT));
+            final Address gatewayAddress =
+                    assignIoTToLeastLoadedGateway(ioT, getRegisteredIoTs().get(ioT));
 
             // Send the updated Gateway Address to the IoT
             switch (ioT.getIoTType()) {
