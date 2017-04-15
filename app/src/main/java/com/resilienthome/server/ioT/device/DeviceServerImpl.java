@@ -39,7 +39,7 @@ public class DeviceServerImpl extends IoTServerImpl implements DeviceServer {
     public void queryState() throws RemoteException {
         try {
             GatewayServer.connect(getGatewayAddress())
-                    .reportState(System.currentTimeMillis(), getDevice());
+                    .reportState(System.currentTimeMillis(), getDevice(), true);
         } catch (NotBoundException e) {
             e.printStackTrace();
         }

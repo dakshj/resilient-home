@@ -63,4 +63,12 @@ public interface LoadBalancerServer extends Remote {
      * {@code false} otherwise
      */
     boolean isRemotePresenceSensorActivated();
+
+    /**
+     * Broadcasts the reported state of one Gateway to all other Gateways
+     *
+     * @param senderGateway The Gateway where the state reporting originated
+     * @param time          The time at which the state was originally reported
+     */
+    void broadcastStateToAllGateways(IoT senderGateway, final long time);
 }

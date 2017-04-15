@@ -61,7 +61,8 @@ public class GatewayServerImpl extends IoTServerImpl implements GatewayServer {
     }
 
     @Override
-    public void reportState(final long time, final IoT ioT) throws RemoteException {
+    public void reportState(final long time, final IoT ioT, final boolean reportFromSensorOrDevice)
+            throws RemoteException {
         DbServer dbServer = null;
 
         try {
@@ -79,8 +80,10 @@ public class GatewayServerImpl extends IoTServerImpl implements GatewayServer {
                 switch (sensor.getSensorType()) {
                     case TEMPERATURE:
                         final TemperatureSensor temperatureSensor = ((TemperatureSensor) sensor);
-                        System.out.println("State of " + temperatureSensor + " : "
-                                + temperatureSensor.getData() + "°F.");
+                        if (reportFromSensorOrDevice) {
+                            System.out.println("State of " + temperatureSensor + " : "
+                                    + temperatureSensor.getData() + "°F.");
+                        }
                         dbServer.temperatureChanged(time, temperatureSensor);
                         break;
 
@@ -104,8 +107,10 @@ public class GatewayServerImpl extends IoTServerImpl implements GatewayServer {
 
                     case DOOR:
                         final DoorSensor doorSensor = ((DoorSensor) sensor);
-                        System.out.println("State of " + doorSensor + " : "
-                                + (doorSensor.getData() ? "Open" : "Closed") + ".");
+                        if (reportFromSensorOrDevice) {
+                            System.out.println("State of " + doorSensor + " : "
+                                    + (doorSensor.getData() ? "Open" : "Closed") + ".");
+                        }
                         dbServer.doorToggled(time, doorSensor);
 
                     {
@@ -126,10 +131,21 @@ public class GatewayServerImpl extends IoTServerImpl implements GatewayServer {
 
             case DEVICE:
                 final Device device = ((Device) ioT);
-                System.out.println("State of " + device + " : "
-                        + (device.getState() ? "On" : "Off") + ".");
+                if (reportFromSensorOrDevice) {
+                    System.out.println("State of " + device + " : "
+                            + (device.getState() ? "On" : "Off") + ".");
+                }
                 dbServer.deviceToggled(time, device);
                 break;
+        }
+
+        if (reportFromSensorOrDevice) {
+            try {
+                LoadBalancerServer.connect(getGatewayConfig().getLoadBalancerAddress())
+                        .broadcastStateToAllGateways(getIoT(), time);
+            } catch (NotBoundException e) {
+                e.printStackTrace();
+            }
         }
     }
 

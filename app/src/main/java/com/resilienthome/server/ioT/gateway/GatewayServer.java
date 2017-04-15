@@ -49,11 +49,14 @@ public interface GatewayServer extends IoTServer {
     /**
      * Reports the current state of the sensor.
      *
-     * @param time The time at which the current state of the sensor was reported
-     * @param ioT  The IoT model object, containing the current state of the IoT
+     * @param time                     The time at which the current state of the sensor was reported
+     * @param ioT                      The IoT model object, containing the current state of the IoT
+     * @param reportFromSensorOrDevice {@code true} if called from a Sensor or a Device;
+     *                                 {@code false} otherwise
      * @throws RemoteException Thrown when a Java RMI Exception occurs
      */
-    void reportState(final long time, final IoT ioT) throws RemoteException;
+    void reportState(final long time, final IoT ioT, final boolean reportFromSensorOrDevice)
+            throws RemoteException;
 
     /**
      * Raises an alarm to alert that an intruder has entered the house.

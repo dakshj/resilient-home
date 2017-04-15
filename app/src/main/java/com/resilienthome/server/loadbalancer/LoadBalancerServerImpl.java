@@ -232,4 +232,20 @@ public class LoadBalancerServerImpl extends ServerImpl implements LoadBalancerSe
 
         return authorizedUser[0];
     }
+
+    @Override
+    public void broadcastStateToAllGateways(final IoT senderGateway, final long time) {
+        getRegisteredGateways().keySet().stream()
+                .filter(gateway -> !gateway.equals(senderGateway))
+                .forEach(gateway -> {
+                    final Address address = getRegisteredGateways().get(gateway);
+
+                    try {
+                        GatewayServer.connect(address)
+                                .reportState(time, gateway, false);
+                    } catch (RemoteException | NotBoundException e) {
+                        e.printStackTrace();
+                    }
+                });
+    }
 }

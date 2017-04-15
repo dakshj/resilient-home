@@ -63,7 +63,7 @@ public class SensorServerImpl extends IoTServerImpl implements SensorServer {
     public void queryState() throws RemoteException {
         try {
             GatewayServer.connect(getGatewayAddress())
-                    .reportState(System.currentTimeMillis(), getSensor());
+                    .reportState(System.currentTimeMillis(), getSensor(), true);
         } catch (NotBoundException e) {
             e.printStackTrace();
         }
