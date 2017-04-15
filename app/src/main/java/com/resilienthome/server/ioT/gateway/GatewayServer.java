@@ -74,6 +74,8 @@ public interface GatewayServer extends IoTServer {
 
     /**
      * Pings this {@link GatewayServer} to check if it is alive or not.
+     *
+     * @throws RemoteException Thrown when a Java RMI exception occurs
      */
-    default void ping() {}
+    default void ping() throws RemoteException {}
 }

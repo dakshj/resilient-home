@@ -94,4 +94,11 @@ public interface DbServer extends IoTServer {
      * @throws RemoteException Thrown when a Java RMI exception occurs
      */
     LimitedSizeArrayList<Log> getYoungestLogsList() throws RemoteException;
+
+    /**
+     * @param originator {@code true} if the synchronization was performed by the originator;
+     *                   {@code false} otherwise
+     * @throws RemoteException Thrown when a Java RMI exception occurs
+     */
+    void synchronizeDatabases(final boolean originator) throws RemoteException;
 }

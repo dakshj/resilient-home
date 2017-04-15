@@ -11,7 +11,6 @@ import com.resilienthome.model.sensor.Sensor;
 import com.resilienthome.model.sensor.TemperatureSensor;
 import com.resilienthome.server.ioT.IoTServerImpl;
 import com.resilienthome.server.ioT.gateway.GatewayServer;
-import com.resilienthome.server.loadbalancer.LoadBalancerServer;
 
 import java.math.BigDecimal;
 import java.rmi.NotBoundException;
@@ -78,15 +77,6 @@ public class SensorServerImpl extends IoTServerImpl implements SensorServer {
         System.out.println("Detected motion.");
 
         queryState();
-
-        try {
-            if (!LoadBalancerServer.connect(getSensorConfig().getLoadBalancerAddress())
-                    .isRemotePresenceSensorActivated()) {
-                raiseRemoteAlarm();
-            }
-        } catch (NotBoundException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override

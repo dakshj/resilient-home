@@ -61,14 +61,18 @@ public interface LoadBalancerServer extends Remote {
      *
      * @return {@code true} if the remote Presence Sensor is activated;
      * {@code false} otherwise
+     * @throws RemoteException Thrown when a Java RMI exception occurs
      */
-    boolean isRemotePresenceSensorActivated();
+    boolean isRemotePresenceSensorActivated() throws RemoteException;
 
     /**
      * Broadcasts the reported state of one Gateway to all other Gateways
      *
      * @param senderGateway The Gateway where the state reporting originated
      * @param time          The time at which the state was originally reported
+     * @param reportingIoT  The IoT which reported the state
+     * @throws RemoteException Thrown when a Java RMI exception occurs
      */
-    void broadcastStateToAllGateways(IoT senderGateway, final long time);
+    void broadcastStateToAllGateways(IoT senderGateway, final long time, final IoT reportingIoT)
+            throws RemoteException;
 }

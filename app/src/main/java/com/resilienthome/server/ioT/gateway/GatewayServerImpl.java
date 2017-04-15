@@ -53,6 +53,7 @@ public class GatewayServerImpl extends IoTServerImpl implements GatewayServer {
     @Override
     public void register(final IoT ioT, final Address address) throws RemoteException {
         getRegisteredIoTs().put(ioT, address);
+        System.out.println("Registered " + ioT + " " + ioT.getId() + ".");
     }
 
     @Override
@@ -73,6 +74,8 @@ public class GatewayServerImpl extends IoTServerImpl implements GatewayServer {
 
         assert dbServer != null;
 
+        dbServer.synchronizeDatabases(reportFromSensorOrDevice);
+
         switch (ioT.getIoTType()) {
             case SENSOR:
                 final Sensor sensor = ((Sensor) ioT);
@@ -92,7 +95,6 @@ public class GatewayServerImpl extends IoTServerImpl implements GatewayServer {
                         dbServer.motionDetected(time, motionSensor);
 
                     {
-                        // TODO will not work unless all DB Servers have synchronized data
                         final LimitedSizeArrayList<Log> youngestLogsList =
                                 dbServer.getYoungestLogsList();
 
@@ -114,7 +116,6 @@ public class GatewayServerImpl extends IoTServerImpl implements GatewayServer {
                         dbServer.doorToggled(time, doorSensor);
 
                     {
-                        // TODO will not work unless all DB Servers have synchronized data
                         final LimitedSizeArrayList<Log> youngestLogsList =
                                 dbServer.getYoungestLogsList();
 
@@ -142,7 +143,7 @@ public class GatewayServerImpl extends IoTServerImpl implements GatewayServer {
         if (reportFromSensorOrDevice) {
             try {
                 LoadBalancerServer.connect(getGatewayConfig().getLoadBalancerAddress())
-                        .broadcastStateToAllGateways(getIoT(), time);
+                        .broadcastStateToAllGateways(getIoT(), time, ioT);
             } catch (NotBoundException e) {
                 e.printStackTrace();
             }
@@ -181,6 +182,7 @@ public class GatewayServerImpl extends IoTServerImpl implements GatewayServer {
     @Override
     public void entrantExecutionFinished() throws RemoteException {
         alreadyRaisedAlarm = false;
+        resetAllPresenceSensorsToInactive();
     }
 
     private void switchOffAllOutlets() {
@@ -216,6 +218,9 @@ public class GatewayServerImpl extends IoTServerImpl implements GatewayServer {
                 } catch (RemoteException | NotBoundException e) {
                     e.printStackTrace();
                 }
+
+                raiseAlarm();
+
                 return;
             }
         } catch (RemoteException | NotBoundException e) {
@@ -236,7 +241,6 @@ public class GatewayServerImpl extends IoTServerImpl implements GatewayServer {
 
         if (!atHome) {
             switchOffAllOutlets();
-            resetAllPresenceSensorsToInactive();
         }
     }
 

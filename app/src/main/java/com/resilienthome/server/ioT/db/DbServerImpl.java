@@ -103,6 +103,15 @@ public class DbServerImpl extends IoTServerImpl implements DbServer {
         return youngestLogsList;
     }
 
+    @Override
+    public void synchronizeDatabases(final boolean originator) throws RemoteException {
+        if (originator) {
+            System.out.println("Syncing with other DBs.");
+        } else {
+            System.out.println("Synced with other DBs.");
+        }
+    }
+
     private Logger getLogger() {
         return logger;
     }

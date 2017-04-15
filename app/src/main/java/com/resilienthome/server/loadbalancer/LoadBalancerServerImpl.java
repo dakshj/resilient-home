@@ -48,9 +48,13 @@ public class LoadBalancerServerImpl extends ServerImpl implements LoadBalancerSe
         switch (ioT.getIoTType()) {
             case GATEWAY:
                 getRegisteredGateways().put(ioT, address);
+                System.out.println("Gateway " + ioT.getId() + " registered.");
+
                 final GatewayAssignment gatewayAssignment = new GatewayAssignment(ioT);
                 if (!getGatewayAssignments().contains(gatewayAssignment)) {
                     getGatewayAssignments().add(gatewayAssignment);
+
+                    System.out.println("Starting periodic pinging to Gateway " + ioT.getId() + "...");
                     startPeriodicGatewayPinging(ioT);
                 }
                 return null;
@@ -59,6 +63,7 @@ public class LoadBalancerServerImpl extends ServerImpl implements LoadBalancerSe
             case DEVICE:
                 if (!getRegisteredIoTs().containsKey(ioT)) {
                     getRegisteredIoTs().put(ioT, address);
+                    System.out.println(ioT + " " + ioT.getId() + " registered.");
                     return assignIoTToLeastLoadedGateway(ioT, address);
                 }
         }
@@ -103,7 +108,10 @@ public class LoadBalancerServerImpl extends ServerImpl implements LoadBalancerSe
             throw new NoRegisteredGatewayException();
         }
 
-        // Remove previous Gateway assignment
+        System.out.println("Assigning " + ioT + " " + ioT.getId()
+                + " to the least loaded Gateway...");
+
+        // Remove previous Gateway assignment, in case an IoT calls register more than once
         getGatewayAssignments().stream()
                 .filter(gatewayAssignment -> gatewayAssignment.containsIoT(ioT))
                 .forEach(gatewayAssignment -> {
@@ -121,16 +129,19 @@ public class LoadBalancerServerImpl extends ServerImpl implements LoadBalancerSe
         Collections.sort(getGatewayAssignments());
         final GatewayAssignment assignment = getGatewayAssignments().get(0);
 
-        System.out.println("Assigning " + ioT + " " + ioT.getId()
-                + " to Gateway " + assignment.getGateway().getId());
+        System.out.println("Assigned to Gateway " + assignment.getGateway().getId());
         assignment.addIoT(ioT);
         Collections.sort(getGatewayAssignments());
 
+        System.out.println("Registering " + ioT + " to Gateway "
+                + assignment.getGateway().getId() + "...");
         try {
             GatewayServer.connect(getRegisteredGateways().get(assignment.getGateway()))
                     .register(ioT, address);
+            System.out.println("Successfully registered.");
         } catch (RemoteException | NotBoundException e) {
             e.printStackTrace();
+            System.out.println("Failed to register!");
         }
 
         return getRegisteredGateways().get(assignment.getGateway());
@@ -143,6 +154,7 @@ public class LoadBalancerServerImpl extends ServerImpl implements LoadBalancerSe
      */
     private void gatewayDown(final IoT gateway) {
         System.out.println("Gateway " + gateway.getId() + "is down!");
+
         getRegisteredGateways().remove(gateway);
         final GatewayAssignment gatewayAssignment = getGatewayAssignments().get(
                 getGatewayAssignments().indexOf(new GatewayAssignment(gateway))
@@ -213,7 +225,7 @@ public class LoadBalancerServerImpl extends ServerImpl implements LoadBalancerSe
     }
 
     @Override
-    public boolean isRemotePresenceSensorActivated() {
+    public boolean isRemotePresenceSensorActivated() throws RemoteException {
         final boolean[] authorizedUser = new boolean[1];
 
         getRegisteredIoTs().keySet().stream()
@@ -234,7 +246,8 @@ public class LoadBalancerServerImpl extends ServerImpl implements LoadBalancerSe
     }
 
     @Override
-    public void broadcastStateToAllGateways(final IoT senderGateway, final long time) {
+    public void broadcastStateToAllGateways(final IoT senderGateway, final long time,
+            final IoT reportingIoT) throws RemoteException {
         getRegisteredGateways().keySet().stream()
                 .filter(gateway -> !gateway.equals(senderGateway))
                 .forEach(gateway -> {
@@ -242,7 +255,7 @@ public class LoadBalancerServerImpl extends ServerImpl implements LoadBalancerSe
 
                     try {
                         GatewayServer.connect(address)
-                                .reportState(time, gateway, false);
+                                .reportState(time, reportingIoT, false);
                     } catch (RemoteException | NotBoundException e) {
                         e.printStackTrace();
                     }

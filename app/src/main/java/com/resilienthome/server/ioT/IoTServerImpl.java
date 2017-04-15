@@ -5,7 +5,6 @@ import com.resilienthome.model.Address;
 import com.resilienthome.model.IoT;
 import com.resilienthome.model.config.ServerConfig;
 import com.resilienthome.server.ServerImpl;
-import com.resilienthome.server.ioT.gateway.GatewayServer;
 import com.resilienthome.server.loadbalancer.LoadBalancerServer;
 
 import java.rmi.NotBoundException;
@@ -38,21 +37,7 @@ public abstract class IoTServerImpl extends ServerImpl implements IoTServer {
                 setGatewayAddress(LoadBalancerServer.connect(getServerConfig()
                         .getLoadBalancerAddress())
                         .register(getIoT(), getServerConfig().getAddress()));
-                System.out.println("Successfully registered.");
-            } catch (RemoteException | NotBoundException e) {
-                e.printStackTrace();
-                System.out.println("Failed to register!");
-            }
-        }
-
-        // Register to Assigned Gateway
-        if (getIoT().getIoTType() == IoTType.SENSOR ||
-                getIoT().getIoTType() == IoTType.DEVICE) {
-            try {
-                System.out.println("Registering to Gateway...");
-                GatewayServer.connect(getGatewayAddress())
-                        .register(ioT, getServerConfig().getAddress());
-                System.out.println("Successfully registered.");
+                System.out.println("Successfully registered to Load Balancer.");
             } catch (RemoteException | NotBoundException e) {
                 e.printStackTrace();
                 System.out.println("Failed to register!");
@@ -73,16 +58,9 @@ public abstract class IoTServerImpl extends ServerImpl implements IoTServer {
     @Override
     public void setGatewayAddress(final Address gatewayAddress) throws RemoteException {
         this.gatewayAddress = gatewayAddress;
-    }
-
-    protected void raiseRemoteAlarm() {
-        System.out.println("Raising Alarm!");
-        System.out.println("Informing Gateway...");
-
-        try {
-            GatewayServer.connect(getGatewayAddress()).raiseAlarm();
-        } catch (RemoteException | NotBoundException e) {
-            e.printStackTrace();
+        if (gatewayAddress != null) {
+            System.out.println("Assigned Gateway with address " + gatewayAddress
+                    + " by Load Balancer.");
         }
     }
 }
