@@ -27,6 +27,8 @@ import java.util.UUID;
 public class GatewayServerImpl extends IoTServerImpl implements GatewayServer {
 
     // TODO add souts for cache fetching
+    // TODO add souts for re-balancing
+    // TODO make entrant query temp sensor
 
     private Map<IoT, Address> registeredIoTs;
 
