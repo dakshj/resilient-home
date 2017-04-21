@@ -128,7 +128,8 @@ public class GatewayServerImpl extends IoTServerImpl implements GatewayServer {
                         final Log log = dbServer.motionDetected(time, motionSensor);
                         Log secondYoungestLog;
 
-                        if (getGatewayConfig().isCachingEnabled()) {
+                        if (getGatewayConfig().isCachingEnabled()
+                                && getYoungestLogsList().size() >= 2) {
                             getYoungestLogsList().add(log);
                             secondYoungestLog = getYoungestLogsList().getNthYoungest(2);
                         } else {
@@ -154,7 +155,8 @@ public class GatewayServerImpl extends IoTServerImpl implements GatewayServer {
                         final Log log = dbServer.doorToggled(time, doorSensor);
                         Log secondYoungestLog;
 
-                        if (getGatewayConfig().isCachingEnabled()) {
+                        if (getGatewayConfig().isCachingEnabled()
+                                && getYoungestLogsList().size() >= 2) {
                             getYoungestLogsList().add(log);
                             secondYoungestLog = getYoungestLogsList().getNthYoungest(2);
                         } else {
