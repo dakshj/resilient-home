@@ -68,11 +68,11 @@ public class Log implements Serializable, Comparable<Log> {
     public String toString() {
         return "" +
                 time + DELIMITER +
-                logType + DELIMITER +
+                (logType != null ? logType.ordinal() : null) + DELIMITER +
                 id + DELIMITER +
-                ioTType + DELIMITER +
-                sensorType + DELIMITER +
-                deviceType + DELIMITER +
+                (ioTType != null ? ioTType.ordinal() : null) + DELIMITER +
+                (sensorType != null ? sensorType.ordinal() : null) + DELIMITER +
+                (deviceType != null ? deviceType.ordinal() : null) + DELIMITER +
                 message;
     }
 

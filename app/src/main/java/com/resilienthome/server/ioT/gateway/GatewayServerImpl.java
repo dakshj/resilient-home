@@ -163,7 +163,8 @@ public class GatewayServerImpl extends IoTServerImpl implements GatewayServer {
                             secondYoungestLog = dbServer.getNthYoungestLog(2);
                         }
 
-                        if (secondYoungestLog.getIoTType() != null &&
+                        if (secondYoungestLog != null &&
+                                secondYoungestLog.getIoTType() != null &&
                                 secondYoungestLog.getIoTType() == IoTType.SENSOR &&
                                 secondYoungestLog.getSensorType() != null &&
                                 secondYoungestLog.getSensorType() == SensorType.MOTION) {
