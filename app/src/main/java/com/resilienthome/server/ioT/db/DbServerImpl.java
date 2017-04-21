@@ -38,7 +38,7 @@ public class DbServerImpl extends IoTServerImpl implements DbServer {
             throws RemoteException {
         final Log log = new Log(time, LogType.RAW, temperatureSensor.getId(),
                 temperatureSensor.getIoTType(), temperatureSensor.getSensorType(), null,
-                "Temperature changed to " + temperatureSensor.getData() + ".");
+                "The temperature is " + temperatureSensor.getData() + "°F.");
 
         getLogger().log(log);
 

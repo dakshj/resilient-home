@@ -85,8 +85,9 @@ public class Entrant {
         System.out.println("Moving around the Resilient Home.");
         triggerMotionSensors();
 
-        System.out.println("Randomly switching devices on and off, and randomly moving around.");
-        randomlyToggleDevicesAndTriggerMotionSensors();
+        System.out.println("Randomly switching devices on and off, and randomly moving around," +
+                " and randomly checking the temperature.");
+        randomlyToggleDevicesAndTriggerMotionSensorsAndQueryTemperatureSensor();
 
         System.out.println("Moving towards the door to leave the Resilient Home.");
         triggerMotionSensors();
@@ -147,14 +148,31 @@ public class Entrant {
                 }).start());
     }
 
+    private void queryTemperatureSensors() {
+        getRegisteredIoTs().keySet().stream()
+                .filter(ioT -> ioT.getIoTType() == IoTType.SENSOR)
+                .map(ioT -> ((Sensor) ioT))
+                .filter(sensor -> sensor.getSensorType() == SensorType.TEMPERATURE)
+                .map(temperatureSensor -> getRegisteredIoTs().get(temperatureSensor))
+                .forEach(address -> new Thread(() -> {
+                    try {
+                        SensorServer.connect(address).queryState();
+                    } catch (RemoteException | NotBoundException e) {
+                        e.printStackTrace();
+                    }
+                }).start());
+    }
+
     /**
      * Randomly selects a few devices and toggles their status.
      * <p>
-     * Additionally, randomly trigger motion sensors with a 50% probability.
+     * Additionally, randomly triggers motion sensors with a 50% probability.
+     * <p>
+     * Additionally, randomly queries temperature sensors with a 50% probability.
      * <p>
      * Finally, randomly recursively calls self with a 80% probability.
      */
-    private void randomlyToggleDevicesAndTriggerMotionSensors() {
+    private void randomlyToggleDevicesAndTriggerMotionSensorsAndQueryTemperatureSensor() {
         getRegisteredIoTs().keySet().stream()
                 .filter(ioT -> ioT.getIoTType() == IoTType.DEVICE)
 
@@ -188,11 +206,16 @@ public class Entrant {
             triggerMotionSensors();
         }
 
+        if (ThreadLocalRandom.current().nextBoolean()) {
+            System.out.println("Checking the Temperature.");
+            queryTemperatureSensors();
+        }
+
         addRandomDelay();
 
         // Randomly recursively calls self with a 80% probability
         if (ThreadLocalRandom.current().nextInt(1, 101) <= 80) {
-            randomlyToggleDevicesAndTriggerMotionSensors();
+            randomlyToggleDevicesAndTriggerMotionSensorsAndQueryTemperatureSensor();
         }
     }
 

@@ -58,7 +58,7 @@ public class LoadBalancerServerImpl extends ServerImpl implements LoadBalancerSe
                     startPeriodicGatewayPinging(ioT);
                 }
 
-                reBalanceGatewayAssignmentsIfRequired();
+                reBalanceGatewayAssignmentsIfRequired(true);
                 return null;
 
             case SENSOR:
@@ -161,13 +161,21 @@ public class LoadBalancerServerImpl extends ServerImpl implements LoadBalancerSe
      * Re-balances the assigned IoTs among Gateways if the
      * highest-loaded Gateway has two more assigned IoTs than the
      * lowest-loaded Gateway.
+     *
+     * @param firstTime Used for printing console messages
+     *                  <p>
+     *                  {@code true} if the method is called initially, {@code false} otherwise
      */
-    private void reBalanceGatewayAssignmentsIfRequired() {
+    private void reBalanceGatewayAssignmentsIfRequired(final boolean firstTime) {
         Collections.sort(getGatewayAssignments());
         if (getGatewayAssignments().size() < 2 ||
                 getGatewayAssignments().get(getGatewayAssignments().size() - 1).size() -
                         getGatewayAssignments().get(0).size() < 2) {
             return;
+        }
+
+        if (firstTime) {
+            System.out.println("Re-balancing Gateway Assignments...");
         }
 
         final GatewayAssignment gatewayAssignment =
@@ -184,7 +192,7 @@ public class LoadBalancerServerImpl extends ServerImpl implements LoadBalancerSe
             assignIoTToLeastLoadedGateway(ioTToReassign, getRegisteredIoTs().get(ioTToReassign));
         }
 
-        reBalanceGatewayAssignmentsIfRequired();
+        reBalanceGatewayAssignmentsIfRequired(false);
     }
 
     /**

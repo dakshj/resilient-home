@@ -26,10 +26,6 @@ import java.util.UUID;
 
 public class GatewayServerImpl extends IoTServerImpl implements GatewayServer {
 
-    // TODO add souts for cache fetching
-    // TODO add souts for re-balancing
-    // TODO make entrant query temp sensor
-
     private final LimitedSizeArrayList<Log> youngestLogsList;
 
     private Map<IoT, Address> registeredIoTs;
@@ -85,6 +81,7 @@ public class GatewayServerImpl extends IoTServerImpl implements GatewayServer {
     @Override
     public void deRegister(final IoT ioT) throws RemoteException {
         getRegisteredIoTs().remove(ioT);
+        System.out.println("De-registered " + ioT + " " + ioT.getId() + ".");
     }
 
     @Override
@@ -131,8 +128,11 @@ public class GatewayServerImpl extends IoTServerImpl implements GatewayServer {
                         if (getGatewayConfig().isCachingEnabled()
                                 && getYoungestLogsList().size() >= 2) {
                             getYoungestLogsList().add(log);
+
+                            System.out.println("Fetching previous Log entry from the Cache.");
                             secondYoungestLog = getYoungestLogsList().getNthYoungest(2);
                         } else {
+                            System.out.println("Fetching previous Log entry from the DB.");
                             secondYoungestLog = dbServer.getNthYoungestLog(2);
                         }
 
@@ -158,8 +158,11 @@ public class GatewayServerImpl extends IoTServerImpl implements GatewayServer {
                         if (getGatewayConfig().isCachingEnabled()
                                 && getYoungestLogsList().size() >= 2) {
                             getYoungestLogsList().add(log);
+
+                            System.out.println("Fetching previous Log entry from the Cache.");
                             secondYoungestLog = getYoungestLogsList().getNthYoungest(2);
                         } else {
+                            System.out.println("Fetching previous Log entry from the DB.");
                             secondYoungestLog = dbServer.getNthYoungestLog(2);
                         }
 
