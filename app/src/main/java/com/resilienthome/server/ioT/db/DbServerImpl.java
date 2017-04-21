@@ -5,7 +5,7 @@ import com.resilienthome.enums.LogType;
 import com.resilienthome.model.Device;
 import com.resilienthome.model.IoT;
 import com.resilienthome.model.Log;
-import com.resilienthome.model.config.ServerConfig;
+import com.resilienthome.model.config.DbConfig;
 import com.resilienthome.model.sensor.DoorSensor;
 import com.resilienthome.model.sensor.MotionSensor;
 import com.resilienthome.model.sensor.TemperatureSensor;
@@ -18,9 +18,9 @@ public class DbServerImpl extends IoTServerImpl implements DbServer {
 
     private final Logger logger;
 
-    public DbServerImpl(final ServerConfig serverConfig) throws RemoteException {
-        super(serverConfig);
-        logger = new Logger();
+    public DbServerImpl(final DbConfig dbConfig) throws RemoteException {
+        super(dbConfig);
+        logger = new Logger(dbConfig.getLogFileUniqueIdentifier());
     }
 
     @Override

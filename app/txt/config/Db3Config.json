@@ -6,5 +6,6 @@
   "loadBalancerAddress": {
     "host": "localhost",
     "portNo": 1099
-  }
+  },
+  "logFileUniqueIdentifier": "3"
 }

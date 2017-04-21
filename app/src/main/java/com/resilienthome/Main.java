@@ -2,6 +2,7 @@ package com.resilienthome;
 
 import com.resilienthome.entrant.Entrant;
 import com.resilienthome.enums.ExecutionMode;
+import com.resilienthome.model.config.DbConfig;
 import com.resilienthome.model.config.DeviceConfig;
 import com.resilienthome.model.config.EntrantConfig;
 import com.resilienthome.model.config.GatewayConfig;
@@ -73,9 +74,9 @@ public class Main {
             break;
 
             case DB: {
-                ConfigReader<ServerConfig> reader = new ConfigReader<>(ServerConfig.class);
-                final ServerConfig serverConfig = reader.read(configFilePath);
-                new DbServerImpl(serverConfig);
+                ConfigReader<DbConfig> reader = new ConfigReader<>(DbConfig.class);
+                final DbConfig dbConfig = reader.read(configFilePath);
+                new DbServerImpl(dbConfig);
             }
             break;
 

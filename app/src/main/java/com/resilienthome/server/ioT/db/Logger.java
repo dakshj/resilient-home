@@ -24,12 +24,14 @@ class Logger {
     /**
      * Initializes (and creates the file on disk, if necessary) a {@link File} object pointing to
      * {@value LOG_FILE_NAME}.
+     *
+     * @param logFileUniqueIdentifier The unique identifier for creating this log file
      */
-    Logger() {
+    Logger(final String logFileUniqueIdentifier) {
         logPath = Paths.get(System.getProperty("user.home"), LOG_FOLDER_NAME);
 
         logFile = new File(logPath.toFile(), LOG_FILE_NAME + " - "
-                + System.currentTimeMillis() + ".txt");
+                + logFileUniqueIdentifier + ".txt");
 
         initializeLogFile();
     }
