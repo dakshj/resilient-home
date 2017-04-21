@@ -30,12 +30,22 @@ public class GatewayServerImpl extends IoTServerImpl implements GatewayServer {
     // TODO add souts for re-balancing
     // TODO make entrant query temp sensor
 
-    private Map<IoT, Address> registeredIoTs;
+    private final LimitedSizeArrayList<Log> youngestLogsList;
 
+    private Map<IoT, Address> registeredIoTs;
     private boolean alreadyRaisedAlarm;
 
     public GatewayServerImpl(final GatewayConfig gatewayConfig) throws RemoteException {
         super(gatewayConfig);
+
+        if (gatewayConfig.isCachingEnabled()) {
+            youngestLogsList = new LimitedSizeArrayList<>(
+                    gatewayConfig.getCacheSize() >= 2 ? gatewayConfig.getCacheSize() : 2
+            );
+        } else {
+            youngestLogsList = null;
+        }
+
         registeredIoTs = new HashMap<>();
     }
 
@@ -47,6 +57,15 @@ public class GatewayServerImpl extends IoTServerImpl implements GatewayServer {
     @Override
     protected String getName() {
         return NAME;
+    }
+
+    /**
+     * Returns a limited-size list of the latest inserted {@link Log}s.
+     *
+     * @return A limited-size list of the latest inserted {@link Log}s
+     */
+    private LimitedSizeArrayList<Log> getYoungestLogsList() {
+        return youngestLogsList;
     }
 
     private Map<IoT, Address> getRegisteredIoTs() {
@@ -88,48 +107,64 @@ public class GatewayServerImpl extends IoTServerImpl implements GatewayServer {
                 final Sensor sensor = ((Sensor) ioT);
 
                 switch (sensor.getSensorType()) {
-                    case TEMPERATURE:
+                    case TEMPERATURE: {
                         final TemperatureSensor temperatureSensor = ((TemperatureSensor) sensor);
                         if (reportFromSensorOrDevice) {
                             System.out.println("State of " + temperatureSensor + " : "
                                     + temperatureSensor.getData() + "°F.");
                         }
-                        dbServer.temperatureChanged(time, temperatureSensor);
-                        break;
 
-                    case MOTION:
+                        final Log log = dbServer.temperatureChanged(time, temperatureSensor);
+
+                        if (getGatewayConfig().isCachingEnabled()) {
+                            getYoungestLogsList().add(log);
+                        }
+                    }
+                    break;
+
+                    case MOTION: {
                         final MotionSensor motionSensor = ((MotionSensor) sensor);
-                        dbServer.motionDetected(time, motionSensor);
 
-                    {
-                        final LimitedSizeArrayList<Log> youngestLogsList =
-                                dbServer.getYoungestLogsList();
+                        final Log log = dbServer.motionDetected(time, motionSensor);
+                        Log secondYoungestLog;
 
-                        if (youngestLogsList.getEldest().getIoTType() != null &&
-                                youngestLogsList.getEldest().getIoTType() == IoTType.SENSOR &&
-                                youngestLogsList.getEldest().getSensorType() != null &&
-                                youngestLogsList.getEldest().getSensorType() == SensorType.DOOR) {
+                        if (getGatewayConfig().isCachingEnabled()) {
+                            getYoungestLogsList().add(log);
+                            secondYoungestLog = getYoungestLogsList().getNthYoungest(2);
+                        } else {
+                            secondYoungestLog = dbServer.getNthYoungestLog(2);
+                        }
+
+                        if (secondYoungestLog.getIoTType() != null &&
+                                secondYoungestLog.getIoTType() == IoTType.SENSOR &&
+                                secondYoungestLog.getSensorType() != null &&
+                                secondYoungestLog.getSensorType() == SensorType.DOOR) {
                             someoneEnteredHome(time, true);
                         }
                     }
                     break;
 
-                    case DOOR:
+                    case DOOR: {
                         final DoorSensor doorSensor = ((DoorSensor) sensor);
                         if (reportFromSensorOrDevice) {
                             System.out.println("State of " + doorSensor + " : "
                                     + (doorSensor.getData() ? "Open" : "Closed") + ".");
                         }
-                        dbServer.doorToggled(time, doorSensor);
 
-                    {
-                        final LimitedSizeArrayList<Log> youngestLogsList =
-                                dbServer.getYoungestLogsList();
+                        final Log log = dbServer.doorToggled(time, doorSensor);
+                        Log secondYoungestLog;
 
-                        if (youngestLogsList.getEldest().getIoTType() != null &&
-                                youngestLogsList.getEldest().getIoTType() == IoTType.SENSOR &&
-                                youngestLogsList.getEldest().getSensorType() != null &&
-                                youngestLogsList.getEldest().getSensorType() == SensorType.MOTION) {
+                        if (getGatewayConfig().isCachingEnabled()) {
+                            getYoungestLogsList().add(log);
+                            secondYoungestLog = getYoungestLogsList().getNthYoungest(2);
+                        } else {
+                            secondYoungestLog = dbServer.getNthYoungestLog(2);
+                        }
+
+                        if (secondYoungestLog.getIoTType() != null &&
+                                secondYoungestLog.getIoTType() == IoTType.SENSOR &&
+                                secondYoungestLog.getSensorType() != null &&
+                                secondYoungestLog.getSensorType() == SensorType.MOTION) {
                             someoneEnteredHome(time, false);
                         }
                     }
@@ -137,14 +172,19 @@ public class GatewayServerImpl extends IoTServerImpl implements GatewayServer {
                 }
                 break;
 
-            case DEVICE:
+            case DEVICE: {
                 final Device device = ((Device) ioT);
                 if (reportFromSensorOrDevice) {
                     System.out.println("State of " + device + " : "
                             + (device.getState() ? "On" : "Off") + ".");
                 }
-                dbServer.deviceToggled(time, device);
-                break;
+                final Log log = dbServer.deviceToggled(time, device);
+
+                if (getGatewayConfig().isCachingEnabled()) {
+                    getYoungestLogsList().add(log);
+                }
+            }
+            break;
         }
 
         if (reportFromSensorOrDevice) {

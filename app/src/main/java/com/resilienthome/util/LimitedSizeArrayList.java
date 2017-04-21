@@ -1,6 +1,7 @@
 package com.resilienthome.util;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class LimitedSizeArrayList<T> extends ArrayList<T> {
 
@@ -19,15 +20,19 @@ public class LimitedSizeArrayList<T> extends ArrayList<T> {
         return inserted;
     }
 
-    public T getYoungest() {
+    /**
+     * Returns the nth youngest element.
+     * <p>
+     * Valid values are from 1 to {@link List#size()}.
+     *
+     * @param n How young the element being fetched should be
+     *          <p>
+     *          E.g.: 1st youngest element --> Last element in the list
+     * @return The nth youngest element
+     */
+    public T getNthYoungest(final int n) {
         if (size() == 0) return null;
 
-        return get(size() - 1);
-    }
-
-    public T getEldest() {
-        if (size() == 0) return null;
-
-        return get(0);
+        return get(size() - n);
     }
 }

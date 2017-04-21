@@ -10,22 +10,17 @@ import com.resilienthome.model.sensor.DoorSensor;
 import com.resilienthome.model.sensor.MotionSensor;
 import com.resilienthome.model.sensor.TemperatureSensor;
 import com.resilienthome.server.ioT.IoTServerImpl;
-import com.resilienthome.util.LimitedSizeArrayList;
 
 import java.rmi.RemoteException;
 import java.util.UUID;
 
 public class DbServerImpl extends IoTServerImpl implements DbServer {
 
-    private static final int YOUNGEST_LOGS_LIST_SIZE = 2;
-
     private final Logger logger;
-    private final LimitedSizeArrayList<Log> youngestLogsList;
 
     public DbServerImpl(final ServerConfig serverConfig) throws RemoteException {
         super(serverConfig);
         logger = new Logger();
-        youngestLogsList = new LimitedSizeArrayList<>(YOUNGEST_LOGS_LIST_SIZE);
     }
 
     @Override
@@ -39,50 +34,50 @@ public class DbServerImpl extends IoTServerImpl implements DbServer {
     }
 
     @Override
-    public void temperatureChanged(final long time, final TemperatureSensor temperatureSensor)
+    public Log temperatureChanged(final long time, final TemperatureSensor temperatureSensor)
             throws RemoteException {
         final Log log = new Log(time, LogType.RAW, temperatureSensor.getId(),
                 temperatureSensor.getIoTType(), temperatureSensor.getSensorType(), null,
                 "Temperature changed to " + temperatureSensor.getData() + ".");
 
-        getYoungestLogsList().add(log);
-
         getLogger().log(log);
+
+        return log;
     }
 
     @Override
-    public void motionDetected(final long time, final MotionSensor motionSensor)
+    public Log motionDetected(final long time, final MotionSensor motionSensor)
             throws RemoteException {
         final Log log = new Log(time, LogType.RAW, motionSensor.getId(),
                 motionSensor.getIoTType(), motionSensor.getSensorType(), null,
                 "Motion detected.");
 
-        getYoungestLogsList().add(log);
-
         getLogger().log(log);
+
+        return log;
     }
 
     @Override
-    public void doorToggled(final long time, final DoorSensor doorSensor) throws RemoteException {
+    public Log doorToggled(final long time, final DoorSensor doorSensor) throws RemoteException {
         final Log log = new Log(time, LogType.RAW, doorSensor.getId(),
                 doorSensor.getIoTType(), doorSensor.getSensorType(), null,
                 "Door " + (doorSensor.getData() ? "opened" : "closed") + ".");
 
-        getYoungestLogsList().add(log);
-
         getLogger().log(log);
+
+        return log;
     }
 
     @Override
-    public void deviceToggled(final long time, final Device device) throws RemoteException {
+    public Log deviceToggled(final long time, final Device device) throws RemoteException {
         final Log log = new Log(time, LogType.RAW, device.getId(),
                 device.getIoTType(), null, device.getDeviceType(),
                 device.getDeviceType() + " switched "
                         + (device.getState() ? "on" : "off") + ".");
 
-        getYoungestLogsList().add(log);
-
         getLogger().log(log);
+
+        return log;
     }
 
     @Override
@@ -105,17 +100,17 @@ public class DbServerImpl extends IoTServerImpl implements DbServer {
     }
 
     @Override
-    public LimitedSizeArrayList<Log> getYoungestLogsList() throws RemoteException {
-        return youngestLogsList;
-    }
-
-    @Override
     public void synchronizeDatabases(final boolean originator) throws RemoteException {
         if (originator) {
             System.out.println("Syncing with other DBs.");
         } else {
             System.out.println("Synced with other DBs.");
         }
+    }
+
+    @Override
+    public Log getNthYoungestLog(final int n) throws RemoteException {
+        return getLogger().getNthYoungestLog(n);
     }
 
     private Logger getLogger() {

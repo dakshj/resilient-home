@@ -16,7 +16,7 @@ public class GatewayConfig extends ServerConfig implements Serializable {
         return dbAddress;
     }
 
-    private boolean isCachingEnabled() {
+    public boolean isCachingEnabled() {
         return cachingEnabled;
     }
 

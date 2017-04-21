@@ -10,6 +10,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 class Logger {
 
@@ -83,5 +85,27 @@ class Logger {
             System.out.println("Failed to write lines to " + LOG_FILE_NAME + "!");
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Reads the nth youngest log line from the log file and parses it into a {@link Log} object.
+     *
+     * @param n How young the element being fetched should be
+     *          <p>
+     *          E.g.: 1st youngest element --> Last element in the list
+     * @return The nth youngest {@link Log}
+     */
+    Log getNthYoungestLog(final int n) {
+        try {
+            final List<String> list = Files.lines(getLogFile().toPath())
+                    .filter(line -> line != null && !line.equals(""))
+                    .collect(Collectors.toList());
+
+            return Log.from(list.get(list.size() - n));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }

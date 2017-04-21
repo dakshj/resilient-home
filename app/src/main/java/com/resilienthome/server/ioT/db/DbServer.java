@@ -7,7 +7,6 @@ import com.resilienthome.model.sensor.DoorSensor;
 import com.resilienthome.model.sensor.MotionSensor;
 import com.resilienthome.model.sensor.TemperatureSensor;
 import com.resilienthome.server.ioT.IoTServer;
-import com.resilienthome.util.LimitedSizeArrayList;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -39,7 +38,7 @@ public interface DbServer extends IoTServer {
      * @param temperatureSensor The temperature sensor which reported the temperature change
      * @throws RemoteException Thrown when a Java RMI exception occurs
      */
-    void temperatureChanged(final long time, final TemperatureSensor temperatureSensor)
+    Log temperatureChanged(final long time, final TemperatureSensor temperatureSensor)
             throws RemoteException;
 
     /**
@@ -49,7 +48,7 @@ public interface DbServer extends IoTServer {
      * @param motionSensor The motion sensor which detected any motion
      * @throws RemoteException Thrown when a Java RMI exception occurs
      */
-    void motionDetected(final long time, final MotionSensor motionSensor) throws RemoteException;
+    Log motionDetected(final long time, final MotionSensor motionSensor) throws RemoteException;
 
     /**
      * Logs the opened state of a door, as provided by the door sensor.
@@ -58,7 +57,7 @@ public interface DbServer extends IoTServer {
      * @param doorSensor The door sensor which reported a door that was opened or closed
      * @throws RemoteException Thrown when a Java RMI exception occurs
      */
-    void doorToggled(final long time, final DoorSensor doorSensor) throws RemoteException;
+    Log doorToggled(final long time, final DoorSensor doorSensor) throws RemoteException;
 
     /**
      * Logs the current state of the device.
@@ -67,7 +66,7 @@ public interface DbServer extends IoTServer {
      * @param device The device whose state was toggled
      * @throws RemoteException Thrown when a Java RMI exception occurs
      */
-    void deviceToggled(final long time, final Device device) throws RemoteException;
+    Log deviceToggled(final long time, final Device device) throws RemoteException;
 
     /**
      * Logs the inferred log of when an Intruder entered the Resilient Home.
@@ -96,17 +95,22 @@ public interface DbServer extends IoTServer {
     void intruderTrapped(final long time) throws RemoteException;
 
     /**
-     * Returns a limited-size list of the latest inserted {@link Log}s.
-     *
-     * @return A limited-size list of the latest inserted {@link Log}s
-     * @throws RemoteException Thrown when a Java RMI exception occurs
-     */
-    LimitedSizeArrayList<Log> getYoungestLogsList() throws RemoteException;
-
-    /**
      * @param originator {@code true} if the synchronization was performed by the originator;
      *                   {@code false} otherwise
      * @throws RemoteException Thrown when a Java RMI exception occurs
      */
     void synchronizeDatabases(final boolean originator) throws RemoteException;
+
+    /**
+     * Returns the nth youngest {@link Log} from the log file.
+     * <p>
+     * Valid values are from 1 to the number of logs in the log file.
+     *
+     * @param n How young the element being fetched should be
+     *          <p>
+     *          E.g.: 1st youngest element --> Last element in the list
+     * @return The nth youngest element
+     * @throws RemoteException Thrown when a Java RMI exception occurs
+     */
+    Log getNthYoungestLog(final int n) throws RemoteException;
 }
