@@ -11,5 +11,6 @@
     "host": "localhost",
     "portNo": 1101
   },
+  "cachingEnabled": true,
   "cacheSize": 2
 }

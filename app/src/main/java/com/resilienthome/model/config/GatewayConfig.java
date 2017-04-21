@@ -8,10 +8,16 @@ public class GatewayConfig extends ServerConfig implements Serializable {
 
     private Address dbAddress;
 
+    private boolean cachingEnabled;
+
     private int cacheSize;
 
     public Address getDbAddress() {
         return dbAddress;
+    }
+
+    private boolean isCachingEnabled() {
+        return cachingEnabled;
     }
 
     public int getCacheSize() {
