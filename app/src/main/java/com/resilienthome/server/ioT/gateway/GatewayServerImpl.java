@@ -87,6 +87,15 @@ public class GatewayServerImpl extends IoTServerImpl implements GatewayServer {
     @Override
     public void reportState(final long time, final IoT ioT, final boolean reportFromSensorOrDevice)
             throws RemoteException {
+        if (reportFromSensorOrDevice) {
+            try {
+                LoadBalancerServer.connect(getGatewayConfig().getLoadBalancerAddress())
+                        .broadcastStateToAllGateways(getIoT(), time, ioT);
+            } catch (NotBoundException e) {
+                e.printStackTrace();
+            }
+        }
+
         DbServer dbServer = null;
 
         try {
@@ -98,6 +107,8 @@ public class GatewayServerImpl extends IoTServerImpl implements GatewayServer {
         assert dbServer != null;
 
         dbServer.synchronizeDatabases(reportFromSensorOrDevice);
+
+        Log createdLog = null;
 
         switch (ioT.getIoTType()) {
             case SENSOR:
@@ -111,37 +122,14 @@ public class GatewayServerImpl extends IoTServerImpl implements GatewayServer {
                                     + temperatureSensor.getData() + "°F.");
                         }
 
-                        final Log log = dbServer.temperatureChanged(time, temperatureSensor);
-
-                        if (getGatewayConfig().isCachingEnabled()) {
-                            getYoungestLogsList().add(log);
-                        }
+                        createdLog = dbServer.temperatureChanged(time, temperatureSensor);
                     }
                     break;
 
                     case MOTION: {
                         final MotionSensor motionSensor = ((MotionSensor) sensor);
 
-                        final Log log = dbServer.motionDetected(time, motionSensor);
-                        Log secondYoungestLog;
-
-                        if (getGatewayConfig().isCachingEnabled()
-                                && getYoungestLogsList().size() >= 2) {
-                            getYoungestLogsList().add(log);
-
-                            System.out.println("Fetching previous Log entry from the Cache.");
-                            secondYoungestLog = getYoungestLogsList().getNthYoungest(2);
-                        } else {
-                            System.out.println("Fetching previous Log entry from the DB.");
-                            secondYoungestLog = dbServer.getNthYoungestLog(2);
-                        }
-
-                        if (secondYoungestLog.getIoTType() != null &&
-                                secondYoungestLog.getIoTType() == IoTType.SENSOR &&
-                                secondYoungestLog.getSensorType() != null &&
-                                secondYoungestLog.getSensorType() == SensorType.DOOR) {
-                            someoneEnteredHome(time, true);
-                        }
+                        createdLog = dbServer.motionDetected(time, motionSensor);
                     }
                     break;
 
@@ -152,27 +140,7 @@ public class GatewayServerImpl extends IoTServerImpl implements GatewayServer {
                                     + (doorSensor.getData() ? "Open" : "Closed") + ".");
                         }
 
-                        final Log log = dbServer.doorToggled(time, doorSensor);
-                        Log secondYoungestLog;
-
-                        if (getGatewayConfig().isCachingEnabled()
-                                && getYoungestLogsList().size() >= 2) {
-                            getYoungestLogsList().add(log);
-
-                            System.out.println("Fetching previous Log entry from the Cache.");
-                            secondYoungestLog = getYoungestLogsList().getNthYoungest(2);
-                        } else {
-                            System.out.println("Fetching previous Log entry from the DB.");
-                            secondYoungestLog = dbServer.getNthYoungestLog(2);
-                        }
-
-                        if (secondYoungestLog != null &&
-                                secondYoungestLog.getIoTType() != null &&
-                                secondYoungestLog.getIoTType() == IoTType.SENSOR &&
-                                secondYoungestLog.getSensorType() != null &&
-                                secondYoungestLog.getSensorType() == SensorType.MOTION) {
-                            someoneEnteredHome(time, false);
-                        }
+                        createdLog = dbServer.doorToggled(time, doorSensor);
                     }
                     break;
                 }
@@ -184,21 +152,52 @@ public class GatewayServerImpl extends IoTServerImpl implements GatewayServer {
                     System.out.println("State of " + device + " : "
                             + (device.getState() ? "On" : "Off") + ".");
                 }
-                final Log log = dbServer.deviceToggled(time, device);
 
-                if (getGatewayConfig().isCachingEnabled()) {
-                    getYoungestLogsList().add(log);
-                }
+                createdLog = dbServer.deviceToggled(time, device);
             }
             break;
         }
 
-        if (reportFromSensorOrDevice) {
-            try {
-                LoadBalancerServer.connect(getGatewayConfig().getLoadBalancerAddress())
-                        .broadcastStateToAllGateways(getIoT(), time, ioT);
-            } catch (NotBoundException e) {
-                e.printStackTrace();
+        if (getGatewayConfig().isCachingEnabled()) {
+            getYoungestLogsList().add(createdLog);
+        }
+
+        final Log secondYoungestLog;
+        final long millisToFetchData = System.currentTimeMillis();
+        if (getGatewayConfig().isCachingEnabled() && getYoungestLogsList().size() >= 2) {
+            System.out.println("Fetching previous Log entry from the Cache.");
+            secondYoungestLog = getYoungestLogsList().getNthYoungest(2);
+        } else {
+            System.out.println("Fetching previous Log entry from the DB.");
+            secondYoungestLog = dbServer.getNthYoungestLog(2);
+        }
+
+        System.out.println("Time taken to fetch data = " +
+                (System.currentTimeMillis() - millisToFetchData) + " ms.");
+
+        checkEntrantEntryOrExit(ioT, secondYoungestLog, time);
+    }
+
+    private void checkEntrantEntryOrExit(final IoT ioT, final Log secondYoungestLog,
+            final long time) {
+        if (ioT.getIoTType() == IoTType.SENSOR &&
+                ((Sensor) ioT).getSensorType() == SensorType.MOTION) {
+            if (secondYoungestLog.getIoTType() != null &&
+                    secondYoungestLog.getIoTType() == IoTType.SENSOR &&
+                    secondYoungestLog.getSensorType() != null &&
+                    secondYoungestLog.getSensorType() == SensorType.DOOR) {
+                someoneEnteredHome(time, true);
+            }
+        }
+
+        if (ioT.getIoTType() == IoTType.SENSOR &&
+                ((Sensor) ioT).getSensorType() == SensorType.DOOR) {
+            if (secondYoungestLog != null &&
+                    secondYoungestLog.getIoTType() != null &&
+                    secondYoungestLog.getIoTType() == IoTType.SENSOR &&
+                    secondYoungestLog.getSensorType() != null &&
+                    secondYoungestLog.getSensorType() == SensorType.MOTION) {
+                someoneEnteredHome(time, false);
             }
         }
     }
