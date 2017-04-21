@@ -103,6 +103,8 @@ class Logger {
                     .filter(line -> line != null && !line.equals(""))
                     .collect(Collectors.toList());
 
+            if (list.size() < n) return null;
+
             return Log.from(list.get(list.size() - n));
         } catch (IOException e) {
             e.printStackTrace();
