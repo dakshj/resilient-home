@@ -10,5 +10,6 @@
   "dbAddress": {
     "host": "localhost",
     "portNo": 1301
-  }
+  },
+  "cacheSize": 2
 }
