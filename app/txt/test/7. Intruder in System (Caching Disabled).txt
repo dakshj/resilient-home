@@ -1,0 +1,370 @@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Load Balancer START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Gateway e459cd05-59fa-48f1-a929-c2cc631910cd registered.
+Starting periodic pinging to Gateway e459cd05-59fa-48f1-a929-c2cc631910cd...
+Pinging Gateway e459cd05-59fa-48f1-a929-c2cc631910cd...
+Ping successful.
+Gateway 0083d26a-8848-4e26-bb89-64091f558708 registered.
+Starting periodic pinging to Gateway 0083d26a-8848-4e26-bb89-64091f558708...
+Pinging Gateway 0083d26a-8848-4e26-bb89-64091f558708...
+Ping successful.
+Gateway 50909a3a-c721-4f70-bd70-2c4483f6b215 registered.
+Starting periodic pinging to Gateway 50909a3a-c721-4f70-bd70-2c4483f6b215...
+Pinging Gateway 50909a3a-c721-4f70-bd70-2c4483f6b215...
+Ping successful.
+Pinging Gateway e459cd05-59fa-48f1-a929-c2cc631910cd...
+Ping successful.
+Pinging Gateway 0083d26a-8848-4e26-bb89-64091f558708...
+Ping successful.
+Pinging Gateway 50909a3a-c721-4f70-bd70-2c4483f6b215...
+Ping successful.
+Pinging Gateway e459cd05-59fa-48f1-a929-c2cc631910cd...
+Ping successful.
+Pinging Gateway 0083d26a-8848-4e26-bb89-64091f558708...
+Ping successful.
+BULB e1509498-0d39-426c-96b0-262a3d49685c registered.
+Assigning BULB e1509498-0d39-426c-96b0-262a3d49685c to the least loaded Gateway...
+Assigned to Gateway e459cd05-59fa-48f1-a929-c2cc631910cd
+Registering BULB to Gateway e459cd05-59fa-48f1-a929-c2cc631910cd...
+Successfully registered.
+Pinging Gateway 50909a3a-c721-4f70-bd70-2c4483f6b215...
+Ping successful.
+Pinging Gateway e459cd05-59fa-48f1-a929-c2cc631910cd...
+Ping successful.
+DOOR d2ba66bc-ee5b-4957-9acf-b84c1c694748 registered.
+Assigning DOOR d2ba66bc-ee5b-4957-9acf-b84c1c694748 to the least loaded Gateway...
+Assigned to Gateway 0083d26a-8848-4e26-bb89-64091f558708
+Registering DOOR to Gateway 0083d26a-8848-4e26-bb89-64091f558708...
+Successfully registered.
+Pinging Gateway 0083d26a-8848-4e26-bb89-64091f558708...
+Ping successful.
+MOTION 498e5a37-2b0f-4143-a7f6-52fd8b47fe58 registered.
+Assigning MOTION 498e5a37-2b0f-4143-a7f6-52fd8b47fe58 to the least loaded Gateway...
+Assigned to Gateway 50909a3a-c721-4f70-bd70-2c4483f6b215
+Registering MOTION to Gateway 50909a3a-c721-4f70-bd70-2c4483f6b215...
+Successfully registered.
+Pinging Gateway 50909a3a-c721-4f70-bd70-2c4483f6b215...
+Ping successful.
+Pinging Gateway e459cd05-59fa-48f1-a929-c2cc631910cd...
+Ping successful.
+OUTLET 98b669f1-727f-4198-85e9-58d5b3d5871f registered.
+Assigning OUTLET 98b669f1-727f-4198-85e9-58d5b3d5871f to the least loaded Gateway...
+Assigned to Gateway 50909a3a-c721-4f70-bd70-2c4483f6b215
+Registering OUTLET to Gateway 50909a3a-c721-4f70-bd70-2c4483f6b215...
+Successfully registered.
+Pinging Gateway 0083d26a-8848-4e26-bb89-64091f558708...
+Ping successful.
+PRESENCE 280f0c1b-5eef-4143-9624-1d4318f82d6c registered.
+Assigning PRESENCE 280f0c1b-5eef-4143-9624-1d4318f82d6c to the least loaded Gateway...
+Assigned to Gateway 0083d26a-8848-4e26-bb89-64091f558708
+Registering PRESENCE to Gateway 0083d26a-8848-4e26-bb89-64091f558708...
+Successfully registered.
+Pinging Gateway 50909a3a-c721-4f70-bd70-2c4483f6b215...
+Ping successful.
+Pinging Gateway e459cd05-59fa-48f1-a929-c2cc631910cd...
+Ping successful.
+TEMPERATURE 7b6fe70f-3313-411c-b00f-59aae024d120 registered.
+Assigning TEMPERATURE 7b6fe70f-3313-411c-b00f-59aae024d120 to the least loaded Gateway...
+Assigned to Gateway e459cd05-59fa-48f1-a929-c2cc631910cd
+Registering TEMPERATURE to Gateway e459cd05-59fa-48f1-a929-c2cc631910cd...
+Successfully registered.
+Pinging Gateway 0083d26a-8848-4e26-bb89-64091f558708...
+Ping successful.
+Pinging Gateway 50909a3a-c721-4f70-bd70-2c4483f6b215...
+Ping successful.
+Pinging Gateway e459cd05-59fa-48f1-a929-c2cc631910cd...
+Ping successful.
+Pinging Gateway 0083d26a-8848-4e26-bb89-64091f558708...
+Ping successful.
+Pinging Gateway 50909a3a-c721-4f70-bd70-2c4483f6b215...
+Ping successful.
+Pinging Gateway e459cd05-59fa-48f1-a929-c2cc631910cd...
+Ping successful.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Load Balancer END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Gateway 1 START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Registering to Load Balancer...
+Successfully registered to Load Balancer.
+Registered BULB e1509498-0d39-426c-96b0-262a3d49685c.
+Registered TEMPERATURE 7b6fe70f-3313-411c-b00f-59aae024d120.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 7 ms.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 9 ms.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 6 ms.
+An intruder has entered the Resilient Home!
+Switching off all outlets!
+Switching on all bulbs!
+Contacting 911 and the Home Owner!
+State of BULB : On.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 11 ms.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 3 ms.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 5 ms.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 8 ms.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 10 ms.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 13 ms.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Gateway 1 END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~DB 1 START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Synced with other DBs.
+Synced with other DBs.
+Synced with other DBs.
+Syncing with other DBs.
+Synced with other DBs.
+Synced with other DBs.
+Synced with other DBs.
+Synced with other DBs.
+Synced with other DBs.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~DB 1 END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Gateway 2 START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Registering to Load Balancer...
+Successfully registered to Load Balancer.
+Registered DOOR d2ba66bc-ee5b-4957-9acf-b84c1c694748.
+Registered PRESENCE 280f0c1b-5eef-4143-9624-1d4318f82d6c.
+State of DOOR : Open.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 8 ms.
+State of DOOR : Closed.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 2 ms.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 7 ms.
+An intruder has entered the Resilient Home!
+Switching off all outlets!
+Switching on all bulbs!
+Contacting 911 and the Home Owner!
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 6 ms.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 4 ms.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 11 ms.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 15 ms.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 7 ms.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 6 ms.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Gateway 2 END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~DB 2 START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Syncing with other DBs.
+Syncing with other DBs.
+Synced with other DBs.
+Synced with other DBs.
+Synced with other DBs.
+Synced with other DBs.
+Synced with other DBs.
+Synced with other DBs.
+Synced with other DBs.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~DB 2 END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Gateway 3 START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Registering to Load Balancer...
+Successfully registered to Load Balancer.
+Registered MOTION 498e5a37-2b0f-4143-a7f6-52fd8b47fe58.
+Registered OUTLET 98b669f1-727f-4198-85e9-58d5b3d5871f.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 8 ms.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 5 ms.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 4 ms.
+An intruder has entered the Resilient Home!
+Switching off all outlets!
+Switching on all bulbs!
+Contacting 911 and the Home Owner!
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 2 ms.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 11 ms.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 13 ms.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 6 ms.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 14 ms.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 9 ms.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Gateway 3 END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~DB 3 START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Synced with other DBs.
+Synced with other DBs.
+Syncing with other DBs.
+Synced with other DBs.
+Syncing with other DBs.
+Syncing with other DBs.
+Syncing with other DBs.
+Syncing with other DBs.
+Syncing with other DBs.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~DB 3 END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Temperature Sensor START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Registering to Load Balancer...
+Assigned Gateway with address localhost:1100 by Load Balancer.
+Successfully registered to Load Balancer.
+New Temperature: 69.0°F.
+New Temperature: 70.44°F.
+New Temperature: 74.49°F.
+New Temperature: 70.51°F.
+New Temperature: 78.64°F.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Temperature Sensor END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Motion Sensor START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Registering to Load Balancer...
+Assigned Gateway with address localhost:1300 by Load Balancer.
+Successfully registered to Load Balancer.
+Detected motion.
+Detected motion.
+Detected motion.
+Detected motion.
+Detected motion.
+Detected motion.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Motion Sensor END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Door Sensor START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Registering to Load Balancer...
+Assigned Gateway with address localhost:1200 by Load Balancer.
+Successfully registered to Load Balancer.
+Door opened.
+Door closed.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Door Sensor END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Presence Sensor START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Registering to Load Balancer...
+Assigned Gateway with address localhost:1200 by Load Balancer.
+Successfully registered to Load Balancer.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Presence Sensor END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Bulb START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Registering to Load Balancer...
+Assigned Gateway with address localhost:1100 by Load Balancer.
+Successfully registered to Load Balancer.
+BULB switched on.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Bulb END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Outlet START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Registering to Load Balancer...
+Assigned Gateway with address localhost:1300 by Load Balancer.
+Successfully registered to Load Balancer.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Outlet END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Intruder START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Fetching the Map of all Registered IoTs from Load-Balancer...
+Successfully fetched.
+Opening the door.
+Closing the door.
+Moving around the Resilient Home.
+Randomly switching devices on and off, and randomly moving around, and randomly checking the temperature.
+Cannot toggle the OUTLET because the Entrant is an Intruder!
+Moving around the Resilient Home.
+Cannot check the Temperature because the Entrant is an Intruder!
+Cannot toggle the BULB because the Entrant is an Intruder!
+Moving around the Resilient Home.
+Cannot check the Temperature because the Entrant is an Intruder!
+Cannot toggle the BULB because the Entrant is an Intruder!
+Cannot toggle the OUTLET because the Entrant is an Intruder!
+Moving around the Resilient Home.
+Cannot check the Temperature because the Entrant is an Intruder!
+Cannot toggle the BULB because the Entrant is an Intruder!
+Cannot toggle the OUTLET because the Entrant is an Intruder!
+Moving around the Resilient Home.
+Cannot check the Temperature because the Entrant is an Intruder!
+Moving towards the door to leave the Resilient Home.
+Cannot use the door because the Entrant is an Intruder!
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Intruder END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Log File 1 START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1492918140748`0`d2ba66bc-ee5b-4957-9acf-b84c1c694748`0`2`null`Door opened.
+1492918141998`0`d2ba66bc-ee5b-4957-9acf-b84c1c694748`0`2`null`Door closed.
+1492918143404`0`498e5a37-2b0f-4143-a7f6-52fd8b47fe58`0`1`null`Motion detected.
+1492918143404`1`null`null`null`null`Intruder entered the Resilient Home.
+1492918143482`0`e1509498-0d39-426c-96b0-262a3d49685c`1`null`0`BULB switched on.
+1492918145954`0`498e5a37-2b0f-4143-a7f6-52fd8b47fe58`0`1`null`Motion detected.
+1492918149511`0`498e5a37-2b0f-4143-a7f6-52fd8b47fe58`0`1`null`Motion detected.
+1492918153606`0`498e5a37-2b0f-4143-a7f6-52fd8b47fe58`0`1`null`Motion detected.
+1492918157689`0`498e5a37-2b0f-4143-a7f6-52fd8b47fe58`0`1`null`Motion detected.
+1492918158410`0`498e5a37-2b0f-4143-a7f6-52fd8b47fe58`0`1`null`Motion detected.
+1492918158999`1`null`null`null`null`Intruder was trapped in the Resilient Home.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Log File 1 END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Log File 2 START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1492918140748`0`d2ba66bc-ee5b-4957-9acf-b84c1c694748`0`2`null`Door opened.
+1492918141998`0`d2ba66bc-ee5b-4957-9acf-b84c1c694748`0`2`null`Door closed.
+1492918143404`0`498e5a37-2b0f-4143-a7f6-52fd8b47fe58`0`1`null`Motion detected.
+1492918143404`1`null`null`null`null`Intruder entered the Resilient Home.
+1492918143482`0`e1509498-0d39-426c-96b0-262a3d49685c`1`null`0`BULB switched on.
+1492918145954`0`498e5a37-2b0f-4143-a7f6-52fd8b47fe58`0`1`null`Motion detected.
+1492918149511`0`498e5a37-2b0f-4143-a7f6-52fd8b47fe58`0`1`null`Motion detected.
+1492918153606`0`498e5a37-2b0f-4143-a7f6-52fd8b47fe58`0`1`null`Motion detected.
+1492918157689`0`498e5a37-2b0f-4143-a7f6-52fd8b47fe58`0`1`null`Motion detected.
+1492918158410`0`498e5a37-2b0f-4143-a7f6-52fd8b47fe58`0`1`null`Motion detected.
+1492918158999`1`null`null`null`null`Intruder was trapped in the Resilient Home.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Log File 2 END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Log File 3 START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1492918140748`0`d2ba66bc-ee5b-4957-9acf-b84c1c694748`0`2`null`Door opened.
+1492918141998`0`d2ba66bc-ee5b-4957-9acf-b84c1c694748`0`2`null`Door closed.
+1492918143404`0`498e5a37-2b0f-4143-a7f6-52fd8b47fe58`0`1`null`Motion detected.
+1492918143404`1`null`null`null`null`Intruder entered the Resilient Home.
+1492918143482`0`e1509498-0d39-426c-96b0-262a3d49685c`1`null`0`BULB switched on.
+1492918145954`0`498e5a37-2b0f-4143-a7f6-52fd8b47fe58`0`1`null`Motion detected.
+1492918149511`0`498e5a37-2b0f-4143-a7f6-52fd8b47fe58`0`1`null`Motion detected.
+1492918153606`0`498e5a37-2b0f-4143-a7f6-52fd8b47fe58`0`1`null`Motion detected.
+1492918157689`0`498e5a37-2b0f-4143-a7f6-52fd8b47fe58`0`1`null`Motion detected.
+1492918158410`0`498e5a37-2b0f-4143-a7f6-52fd8b47fe58`0`1`null`Motion detected.
+1492918158999`1`null`null`null`null`Intruder was trapped in the Resilient Home.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Log File 3 END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
