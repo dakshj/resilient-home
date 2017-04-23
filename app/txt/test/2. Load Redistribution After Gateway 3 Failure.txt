@@ -1,0 +1,243 @@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Load Balancer START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Gateway 31c23e6c-72ce-4a42-86d8-58a28416fd9d registered.
+Starting periodic pinging to Gateway 31c23e6c-72ce-4a42-86d8-58a28416fd9d...
+Pinging Gateway 31c23e6c-72ce-4a42-86d8-58a28416fd9d...
+Ping successful.
+Gateway 45fd6929-806c-4727-af62-e67c94431795 registered.
+Starting periodic pinging to Gateway 45fd6929-806c-4727-af62-e67c94431795...
+Pinging Gateway 45fd6929-806c-4727-af62-e67c94431795...
+Ping successful.
+Pinging Gateway 31c23e6c-72ce-4a42-86d8-58a28416fd9d...
+Ping successful.
+Gateway 4db9beec-8d6e-4aaf-8495-665e8c364fcf registered.
+Starting periodic pinging to Gateway 4db9beec-8d6e-4aaf-8495-665e8c364fcf...
+Pinging Gateway 4db9beec-8d6e-4aaf-8495-665e8c364fcf...
+Ping successful.
+BULB df4d46d4-26f9-4b86-ba78-e7dc9c6293b7 registered.
+Assigning BULB df4d46d4-26f9-4b86-ba78-e7dc9c6293b7 to the least loaded Gateway...
+Assigned to Gateway 31c23e6c-72ce-4a42-86d8-58a28416fd9d
+Registering BULB to Gateway 31c23e6c-72ce-4a42-86d8-58a28416fd9d...
+Successfully registered.
+Pinging Gateway 31c23e6c-72ce-4a42-86d8-58a28416fd9d...
+Ping successful.
+Pinging Gateway 4db9beec-8d6e-4aaf-8495-665e8c364fcf...
+Ping successful.
+DOOR ce8e4be5-68a3-45e6-822f-b07f836bdfec registered.
+Assigning DOOR ce8e4be5-68a3-45e6-822f-b07f836bdfec to the least loaded Gateway...
+Assigned to Gateway 45fd6929-806c-4727-af62-e67c94431795
+Registering DOOR to Gateway 45fd6929-806c-4727-af62-e67c94431795...
+Successfully registered.
+Pinging Gateway 45fd6929-806c-4727-af62-e67c94431795...
+Ping successful.
+OUTLET cdb499dc-4e34-4fa2-b952-116e9e1e3a93 registered.
+Assigning OUTLET cdb499dc-4e34-4fa2-b952-116e9e1e3a93 to the least loaded Gateway...
+Assigned to Gateway 4db9beec-8d6e-4aaf-8495-665e8c364fcf
+Registering OUTLET to Gateway 4db9beec-8d6e-4aaf-8495-665e8c364fcf...
+Successfully registered.
+Pinging Gateway 45fd6929-806c-4727-af62-e67c94431795...
+Ping successful.
+PRESENCE 19c39800-b011-4c83-97fe-a50b9b309c90 registered.
+Assigning PRESENCE 19c39800-b011-4c83-97fe-a50b9b309c90 to the least loaded Gateway...
+Assigned to Gateway 4db9beec-8d6e-4aaf-8495-665e8c364fcf
+Registering PRESENCE to Gateway 4db9beec-8d6e-4aaf-8495-665e8c364fcf...
+Successfully registered.
+Pinging Gateway 45fd6929-806c-4727-af62-e67c94431795...
+Ping successful.
+Pinging Gateway 31c23e6c-72ce-4a42-86d8-58a28416fd9d...
+Ping successful.
+Pinging Gateway 4db9beec-8d6e-4aaf-8495-665e8c364fcf...
+Ping successful.
+TEMPERATURE e4ae9d1b-6093-472b-a02e-d3e1114403f9 registered.
+Assigning TEMPERATURE e4ae9d1b-6093-472b-a02e-d3e1114403f9 to the least loaded Gateway...
+Assigned to Gateway 45fd6929-806c-4727-af62-e67c94431795
+Registering TEMPERATURE to Gateway 45fd6929-806c-4727-af62-e67c94431795...
+Successfully registered.
+Pinging Gateway 45fd6929-806c-4727-af62-e67c94431795...
+Ping successful.
+Pinging Gateway 31c23e6c-72ce-4a42-86d8-58a28416fd9d...
+Ping successful.
+MOTION 818ca437-177d-468c-b5f9-f4ef8eec63ca registered.
+Assigning MOTION 818ca437-177d-468c-b5f9-f4ef8eec63ca to the least loaded Gateway...
+Assigned to Gateway 31c23e6c-72ce-4a42-86d8-58a28416fd9d
+Registering MOTION to Gateway 31c23e6c-72ce-4a42-86d8-58a28416fd9d...
+Successfully registered.
+Pinging Gateway 4db9beec-8d6e-4aaf-8495-665e8c364fcf...
+Ping successful.
+Pinging Gateway 45fd6929-806c-4727-af62-e67c94431795...
+Ping successful.
+Pinging Gateway 31c23e6c-72ce-4a42-86d8-58a28416fd9d...
+java.rmi.ConnectException: Connection refused to host: localhost; nested exception is:
+	java.net.ConnectException: Connection refused: connect
+	at sun.rmi.transport.tcp.TCPEndpoint.newSocket(TCPEndpoint.java:619)
+	at sun.rmi.transport.tcp.TCPChannel.createConnection(TCPChannel.java:216)
+	at sun.rmi.transport.tcp.TCPChannel.newConnection(TCPChannel.java:202)
+	at sun.rmi.server.UnicastRef.newCall(UnicastRef.java:342)
+	at sun.rmi.registry.RegistryImpl_Stub.lookup(Unknown Source)
+	at com.resilienthome.server.ioT.gateway.GatewayServer.connect(GatewayServer.java:27)
+	at com.resilienthome.server.loadbalancer.LoadBalancerServerImpl.startPeriodicGatewayPinging(LoadBalancerServerImpl.java:88)
+	at com.resilienthome.server.loadbalancer.LoadBalancerServerImpl.access$000(LoadBalancerServerImpl.java:26)
+	at com.resilienthome.server.loadbalancer.LoadBalancerServerImpl$1.run(LoadBalancerServerImpl.java:100)
+	at java.util.TimerThread.mainLoop(Timer.java:555)
+	at java.util.TimerThread.run(Timer.java:505)
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:79)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at java.net.Socket.connect(Socket.java:538)
+	at java.net.Socket.<init>(Socket.java:434)
+	at java.net.Socket.<init>(Socket.java:211)
+	at sun.rmi.transport.proxy.RMIDirectSocketFactory.createSocket(RMIDirectSocketFactory.java:40)
+	at sun.rmi.transport.proxy.RMIMasterSocketFactory.createSocket(RMIMasterSocketFactory.java:148)
+	at sun.rmi.transport.tcp.TCPEndpoint.newSocket(TCPEndpoint.java:613)
+	... 10 more
+Gateway 31c23e6c-72ce-4a42-86d8-58a28416fd9dis down!
+Reassigning IoTs to new Gateways...
+Assigning BULB df4d46d4-26f9-4b86-ba78-e7dc9c6293b7 to the least loaded Gateway...
+Assigned to Gateway 45fd6929-806c-4727-af62-e67c94431795
+Registering BULB to Gateway 45fd6929-806c-4727-af62-e67c94431795...
+Successfully registered.
+Assigning MOTION 818ca437-177d-468c-b5f9-f4ef8eec63ca to the least loaded Gateway...
+Assigned to Gateway 4db9beec-8d6e-4aaf-8495-665e8c364fcf
+Registering MOTION to Gateway 4db9beec-8d6e-4aaf-8495-665e8c364fcf...
+Successfully registered.
+Pinging Gateway 4db9beec-8d6e-4aaf-8495-665e8c364fcf...
+Ping successful.
+Pinging Gateway 45fd6929-806c-4727-af62-e67c94431795...
+Ping successful.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Load Balancer END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Gateway 1 START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Registering to Load Balancer...
+Successfully registered to Load Balancer.
+Registered DOOR ce8e4be5-68a3-45e6-822f-b07f836bdfec.
+Registered TEMPERATURE e4ae9d1b-6093-472b-a02e-d3e1114403f9.
+Registered BULB df4d46d4-26f9-4b86-ba78-e7dc9c6293b7.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Gateway 1 END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~DB 1 START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~DB 1 END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Gateway 2 START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Registering to Load Balancer...
+Successfully registered to Load Balancer.
+Registered OUTLET cdb499dc-4e34-4fa2-b952-116e9e1e3a93.
+Registered PRESENCE 19c39800-b011-4c83-97fe-a50b9b309c90.
+Registered MOTION 818ca437-177d-468c-b5f9-f4ef8eec63ca.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Gateway 2 END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~DB 2 START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~DB 2 END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Gateway 3 START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Registering to Load Balancer...
+Successfully registered to Load Balancer.
+Registered BULB df4d46d4-26f9-4b86-ba78-e7dc9c6293b7.
+Registered MOTION 818ca437-177d-468c-b5f9-f4ef8eec63ca.
+
+<<<<<<<<KILLED SERVER FORCEFULLY>>>>>>>>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Gateway 3 END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~DB 3 START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~DB 3 END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Temperature Sensor START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Registering to Load Balancer...
+Assigned Gateway with address localhost:1100 by Load Balancer.
+Successfully registered to Load Balancer.
+New Temperature: 79.16°F.
+New Temperature: 69.62°F.
+New Temperature: 75.63°F.
+New Temperature: 67.87°F.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Temperature Sensor END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Motion Sensor START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Registering to Load Balancer...
+Assigned Gateway with address localhost:1300 by Load Balancer.
+Successfully registered to Load Balancer.
+Assigned Gateway with address localhost:1200 by Load Balancer.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Motion Sensor END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Door Sensor START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Registering to Load Balancer...
+Assigned Gateway with address localhost:1100 by Load Balancer.
+Successfully registered to Load Balancer.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Door Sensor END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Presence Sensor START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Registering to Load Balancer...
+Assigned Gateway with address localhost:1200 by Load Balancer.
+Successfully registered to Load Balancer.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Presence Sensor END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Bulb START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Registering to Load Balancer...
+Assigned Gateway with address localhost:1300 by Load Balancer.
+Successfully registered to Load Balancer.
+Assigned Gateway with address localhost:1100 by Load Balancer.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Bulb END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Outlet START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Registering to Load Balancer...
+Assigned Gateway with address localhost:1200 by Load Balancer.
+Successfully registered to Load Balancer.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Outlet END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Log File 1 START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Log File 1 END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Log File 2 START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Log File 2 END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Log File 3 START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Log File 3 END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
