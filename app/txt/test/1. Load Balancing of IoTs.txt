@@ -1,0 +1,151 @@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Load Balancer START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Gateway ba5bcf88-59c6-456e-9c4e-4a1d5d6ff405 registered.
+Starting periodic pinging to Gateway ba5bcf88-59c6-456e-9c4e-4a1d5d6ff405...
+Pinging Gateway ba5bcf88-59c6-456e-9c4e-4a1d5d6ff405...
+Ping successful.
+Gateway 21da4569-4787-4485-8667-37963f3c5804 registered.
+Starting periodic pinging to Gateway 21da4569-4787-4485-8667-37963f3c5804...
+Pinging Gateway 21da4569-4787-4485-8667-37963f3c5804...
+Ping successful.
+Pinging Gateway ba5bcf88-59c6-456e-9c4e-4a1d5d6ff405...
+Ping successful.
+Pinging Gateway 21da4569-4787-4485-8667-37963f3c5804...
+Ping successful.
+Pinging Gateway ba5bcf88-59c6-456e-9c4e-4a1d5d6ff405...
+Ping successful.
+Gateway 026efbc5-b617-481f-b8f3-1621bf0db2e1 registered.
+Starting periodic pinging to Gateway 026efbc5-b617-481f-b8f3-1621bf0db2e1...
+Pinging Gateway 026efbc5-b617-481f-b8f3-1621bf0db2e1...
+Ping successful.
+Pinging Gateway 21da4569-4787-4485-8667-37963f3c5804...
+Ping successful.
+Pinging Gateway ba5bcf88-59c6-456e-9c4e-4a1d5d6ff405...
+Ping successful.
+Pinging Gateway 026efbc5-b617-481f-b8f3-1621bf0db2e1...
+Ping successful.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Load Balancer END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Gateway 1 START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Registering to Load Balancer...
+Successfully registered to Load Balancer.
+Registered DOOR 37ebcca5-bbb9-42bc-8f00-349b797c2907.
+Registered PRESENCE f8706d90-9c31-4719-bbdb-72e06883a419.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Gateway 1 END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~DB 1 START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~DB 1 END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Gateway 2 START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Registering to Load Balancer...
+Successfully registered to Load Balancer.
+Registered MOTION 9be64acf-9896-42f5-8bdf-4e653623e160.
+Registered OUTLET 1a712113-0039-4877-aaee-81f641b4d58a.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Gateway 2 END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~DB 2 START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~DB 2 END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Gateway 3 START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Registering to Load Balancer...
+Successfully registered to Load Balancer.
+Registered BULB e224530f-d286-413c-b0ea-794fbeec2ec6.
+Registered TEMPERATURE 61637205-cd18-4d21-8db1-fcac55119db9.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Gateway 3 END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~DB 3 START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~DB 3 END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Temperature Sensor START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Registering to Load Balancer...
+Assigned Gateway with address localhost:1300 by Load Balancer.
+Successfully registered to Load Balancer.
+New Temperature: 65.85°F.
+New Temperature: 66.43°F.
+New Temperature: 81.82°F.
+New Temperature: 81.28°F.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Temperature Sensor END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Motion Sensor START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Registering to Load Balancer...
+Assigned Gateway with address localhost:1200 by Load Balancer.
+Successfully registered to Load Balancer.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Motion Sensor END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Door Sensor START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Registering to Load Balancer...
+Assigned Gateway with address localhost:1100 by Load Balancer.
+Successfully registered to Load Balancer.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Door Sensor END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Presence Sensor START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Registering to Load Balancer...
+Assigned Gateway with address localhost:1100 by Load Balancer.
+Successfully registered to Load Balancer.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Presence Sensor END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Bulb START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Registering to Load Balancer...
+Assigned Gateway with address localhost:1300 by Load Balancer.
+Successfully registered to Load Balancer.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Bulb END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Outlet START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Registering to Load Balancer...
+Assigned Gateway with address localhost:1200 by Load Balancer.
+Successfully registered to Load Balancer.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Outlet END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Log File 1 START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Log File 1 END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Log File 2 START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Log File 2 END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Log File 3 START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Log File 3 END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
