@@ -155,7 +155,7 @@ Successfully registered to Load Balancer.
 Registered BULB df4d46d4-26f9-4b86-ba78-e7dc9c6293b7.
 Registered MOTION 818ca437-177d-468c-b5f9-f4ef8eec63ca.
 
-<<<<<<<<KILLED SERVER FORCEFULLY>>>>>>>>
+<<<<<<<<SERVER FAILURE OCCURRED>>>>>>>>
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Gateway 3 END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 

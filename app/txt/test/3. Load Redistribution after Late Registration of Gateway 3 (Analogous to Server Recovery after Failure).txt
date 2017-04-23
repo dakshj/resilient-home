@@ -1,0 +1,204 @@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Load Balancer START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Gateway 4e4b02e0-8dc9-408c-85b6-bed19f17d9f8 registered.
+Starting periodic pinging to Gateway 4e4b02e0-8dc9-408c-85b6-bed19f17d9f8...
+Pinging Gateway 4e4b02e0-8dc9-408c-85b6-bed19f17d9f8...
+Ping successful.
+Pinging Gateway 4e4b02e0-8dc9-408c-85b6-bed19f17d9f8...
+Ping successful.
+Gateway fa4002e9-e663-4520-a088-66c996d7aac2 registered.
+Starting periodic pinging to Gateway fa4002e9-e663-4520-a088-66c996d7aac2...
+Pinging Gateway fa4002e9-e663-4520-a088-66c996d7aac2...
+Ping successful.
+Pinging Gateway fa4002e9-e663-4520-a088-66c996d7aac2...
+Ping successful.
+BULB 5760cf92-9fe4-463d-b774-58c8b386f2cd registered.
+Assigning BULB 5760cf92-9fe4-463d-b774-58c8b386f2cd to the least loaded Gateway...
+Assigned to Gateway 4e4b02e0-8dc9-408c-85b6-bed19f17d9f8
+Registering BULB to Gateway 4e4b02e0-8dc9-408c-85b6-bed19f17d9f8...
+Successfully registered.
+DOOR 2e90f75d-bcf8-4345-a172-6f6ab048c856 registered.
+Assigning DOOR 2e90f75d-bcf8-4345-a172-6f6ab048c856 to the least loaded Gateway...
+Assigned to Gateway fa4002e9-e663-4520-a088-66c996d7aac2
+Registering DOOR to Gateway fa4002e9-e663-4520-a088-66c996d7aac2...
+Successfully registered.
+Pinging Gateway 4e4b02e0-8dc9-408c-85b6-bed19f17d9f8...
+Ping successful.
+Pinging Gateway fa4002e9-e663-4520-a088-66c996d7aac2...
+Ping successful.
+MOTION 020ae1dc-8866-4220-ac1b-5a0b9951cc1f registered.
+Assigning MOTION 020ae1dc-8866-4220-ac1b-5a0b9951cc1f to the least loaded Gateway...
+Assigned to Gateway fa4002e9-e663-4520-a088-66c996d7aac2
+Registering MOTION to Gateway fa4002e9-e663-4520-a088-66c996d7aac2...
+Successfully registered.
+TEMPERATURE 54a07df2-5828-4210-965f-d8bd16b6cc90 registered.
+Assigning TEMPERATURE 54a07df2-5828-4210-965f-d8bd16b6cc90 to the least loaded Gateway...
+Assigned to Gateway 4e4b02e0-8dc9-408c-85b6-bed19f17d9f8
+Registering TEMPERATURE to Gateway 4e4b02e0-8dc9-408c-85b6-bed19f17d9f8...
+Successfully registered.
+Pinging Gateway 4e4b02e0-8dc9-408c-85b6-bed19f17d9f8...
+Ping successful.
+OUTLET bc151fe2-ed73-45b8-9223-a74cd6ced448 registered.
+Assigning OUTLET bc151fe2-ed73-45b8-9223-a74cd6ced448 to the least loaded Gateway...
+Assigned to Gateway 4e4b02e0-8dc9-408c-85b6-bed19f17d9f8
+Registering OUTLET to Gateway 4e4b02e0-8dc9-408c-85b6-bed19f17d9f8...
+Successfully registered.
+PRESENCE c547e2e9-3da5-4cde-98f1-d9259097119b registered.
+Assigning PRESENCE c547e2e9-3da5-4cde-98f1-d9259097119b to the least loaded Gateway...
+Assigned to Gateway fa4002e9-e663-4520-a088-66c996d7aac2
+Registering PRESENCE to Gateway fa4002e9-e663-4520-a088-66c996d7aac2...
+Successfully registered.
+Pinging Gateway 4e4b02e0-8dc9-408c-85b6-bed19f17d9f8...
+Ping successful.
+Pinging Gateway fa4002e9-e663-4520-a088-66c996d7aac2...
+Ping successful.
+Pinging Gateway 4e4b02e0-8dc9-408c-85b6-bed19f17d9f8...
+Ping successful.
+Gateway 02a6fde3-689d-4d21-8e40-56c3cc6e277e registered.
+Starting periodic pinging to Gateway 02a6fde3-689d-4d21-8e40-56c3cc6e277e...
+Pinging Gateway 02a6fde3-689d-4d21-8e40-56c3cc6e277e...
+Ping successful.
+Re-balancing Gateway Assignments...
+Assigning OUTLET bc151fe2-ed73-45b8-9223-a74cd6ced448 to the least loaded Gateway...
+Assigned to Gateway 02a6fde3-689d-4d21-8e40-56c3cc6e277e
+Registering OUTLET to Gateway 02a6fde3-689d-4d21-8e40-56c3cc6e277e...
+Successfully registered.
+Assigning DOOR 2e90f75d-bcf8-4345-a172-6f6ab048c856 to the least loaded Gateway...
+Assigned to Gateway 02a6fde3-689d-4d21-8e40-56c3cc6e277e
+Registering DOOR to Gateway 02a6fde3-689d-4d21-8e40-56c3cc6e277e...
+Successfully registered.
+Pinging Gateway fa4002e9-e663-4520-a088-66c996d7aac2...
+Ping successful.
+Pinging Gateway 4e4b02e0-8dc9-408c-85b6-bed19f17d9f8...
+Ping successful.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Load Balancer END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Gateway 1 START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Registering to Load Balancer...
+Successfully registered to Load Balancer.
+Registered BULB 5760cf92-9fe4-463d-b774-58c8b386f2cd.
+Registered TEMPERATURE 54a07df2-5828-4210-965f-d8bd16b6cc90.
+Registered OUTLET bc151fe2-ed73-45b8-9223-a74cd6ced448.
+De-registered OUTLET bc151fe2-ed73-45b8-9223-a74cd6ced448.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Gateway 1 END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~DB 1 START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~DB 1 END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Gateway 2 START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Registering to Load Balancer...
+Successfully registered to Load Balancer.
+Registered DOOR 2e90f75d-bcf8-4345-a172-6f6ab048c856.
+Registered MOTION 020ae1dc-8866-4220-ac1b-5a0b9951cc1f.
+Registered PRESENCE c547e2e9-3da5-4cde-98f1-d9259097119b.
+De-registered DOOR 2e90f75d-bcf8-4345-a172-6f6ab048c856.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Gateway 2 END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~DB 2 START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~DB 2 END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Gateway 3 START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Registering to Load Balancer...
+Registered OUTLET bc151fe2-ed73-45b8-9223-a74cd6ced448.
+Registered DOOR 2e90f75d-bcf8-4345-a172-6f6ab048c856.
+Successfully registered to Load Balancer.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Gateway 3 END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~DB 3 START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~DB 3 END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Temperature Sensor START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Registering to Load Balancer...
+Assigned Gateway with address localhost:1100 by Load Balancer.
+Successfully registered to Load Balancer.
+New Temperature: 65.58°F.
+New Temperature: 79.09°F.
+New Temperature: 73.01°F.
+New Temperature: 75.54°F.
+New Temperature: 77.13°F.
+New Temperature: 83.51°F.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Temperature Sensor END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Motion Sensor START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Registering to Load Balancer...
+Assigned Gateway with address localhost:1200 by Load Balancer.
+Successfully registered to Load Balancer.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Motion Sensor END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Door Sensor START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Registering to Load Balancer...
+Assigned Gateway with address localhost:1200 by Load Balancer.
+Successfully registered to Load Balancer.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Door Sensor END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Presence Sensor START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Registering to Load Balancer...
+Assigned Gateway with address localhost:1200 by Load Balancer.
+Successfully registered to Load Balancer.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Presence Sensor END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Bulb START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Registering to Load Balancer...
+Assigned Gateway with address localhost:1100 by Load Balancer.
+Successfully registered to Load Balancer.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Bulb END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Outlet START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Registering to Load Balancer...
+Assigned Gateway with address localhost:1100 by Load Balancer.
+Successfully registered to Load Balancer.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Outlet END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Log File 1 START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Log File 1 END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Log File 2 START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Log File 2 END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Log File 3 START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Log File 3 END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
