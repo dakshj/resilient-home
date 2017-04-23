@@ -207,8 +207,13 @@ public class Entrant {
         }
 
         if (ThreadLocalRandom.current().nextBoolean()) {
-            System.out.println("Checking the Temperature.");
-            queryTemperatureSensors();
+            if (getEntrantConfig().isAuthorized()) {
+                System.out.println("Checking the Temperature.");
+                queryTemperatureSensors();
+            } else {
+                System.out.println("Cannot check the Temperature because" +
+                        " the Entrant is an Intruder!");
+            }
         }
 
         addRandomDelay();

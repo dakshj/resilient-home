@@ -319,12 +319,14 @@ public class LoadBalancerServerImpl extends ServerImpl implements LoadBalancerSe
                 .forEach(gateway -> {
                     final Address address = getRegisteredGateways().get(gateway);
 
-                    try {
-                        GatewayServer.connect(address)
-                                .reportState(time, reportingIoT, false);
-                    } catch (RemoteException | NotBoundException e) {
-                        e.printStackTrace();
-                    }
+                    new Thread(() -> {
+                        try {
+                            GatewayServer.connect(address)
+                                    .reportState(time, reportingIoT, false);
+                        } catch (RemoteException | NotBoundException e) {
+                            e.printStackTrace();
+                        }
+                    }).start();
                 });
     }
 }
