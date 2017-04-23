@@ -1,0 +1,469 @@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Load Balancer START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Gateway b03af26c-7fb0-49f4-99a5-28518a7664ae registered.
+Starting periodic pinging to Gateway b03af26c-7fb0-49f4-99a5-28518a7664ae...
+Pinging Gateway b03af26c-7fb0-49f4-99a5-28518a7664ae...
+Ping successful.
+Gateway 55b75bce-c682-433d-944a-50686e092b62 registered.
+Starting periodic pinging to Gateway 55b75bce-c682-433d-944a-50686e092b62...
+Pinging Gateway 55b75bce-c682-433d-944a-50686e092b62...
+Ping successful.
+Gateway fea7d37b-0310-403b-987a-367be0f70973 registered.
+Starting periodic pinging to Gateway fea7d37b-0310-403b-987a-367be0f70973...
+Pinging Gateway fea7d37b-0310-403b-987a-367be0f70973...
+Ping successful.
+Pinging Gateway b03af26c-7fb0-49f4-99a5-28518a7664ae...
+Ping successful.
+Pinging Gateway 55b75bce-c682-433d-944a-50686e092b62...
+Ping successful.
+BULB 1aac9c95-2e5e-4fc7-8f36-ceee441d45fc registered.
+Assigning BULB 1aac9c95-2e5e-4fc7-8f36-ceee441d45fc to the least loaded Gateway...
+Assigned to Gateway b03af26c-7fb0-49f4-99a5-28518a7664ae
+Registering BULB to Gateway b03af26c-7fb0-49f4-99a5-28518a7664ae...
+Successfully registered.
+Pinging Gateway fea7d37b-0310-403b-987a-367be0f70973...
+Ping successful.
+Pinging Gateway b03af26c-7fb0-49f4-99a5-28518a7664ae...
+Ping successful.
+DOOR f172dabe-5f20-4e19-87f8-b1cc514837dd registered.
+Assigning DOOR f172dabe-5f20-4e19-87f8-b1cc514837dd to the least loaded Gateway...
+Assigned to Gateway 55b75bce-c682-433d-944a-50686e092b62
+Registering DOOR to Gateway 55b75bce-c682-433d-944a-50686e092b62...
+Successfully registered.
+Pinging Gateway 55b75bce-c682-433d-944a-50686e092b62...
+Ping successful.
+MOTION 0b4a844c-c050-46dd-b7a9-1492f323b254 registered.
+Assigning MOTION 0b4a844c-c050-46dd-b7a9-1492f323b254 to the least loaded Gateway...
+Assigned to Gateway fea7d37b-0310-403b-987a-367be0f70973
+Registering MOTION to Gateway fea7d37b-0310-403b-987a-367be0f70973...
+Successfully registered.
+Pinging Gateway fea7d37b-0310-403b-987a-367be0f70973...
+Ping successful.
+Pinging Gateway b03af26c-7fb0-49f4-99a5-28518a7664ae...
+Ping successful.
+OUTLET 8bc617a9-7dd4-4340-9903-5a1ef60bc086 registered.
+Assigning OUTLET 8bc617a9-7dd4-4340-9903-5a1ef60bc086 to the least loaded Gateway...
+Assigned to Gateway fea7d37b-0310-403b-987a-367be0f70973
+Registering OUTLET to Gateway fea7d37b-0310-403b-987a-367be0f70973...
+Successfully registered.
+Pinging Gateway 55b75bce-c682-433d-944a-50686e092b62...
+Ping successful.
+PRESENCE a0bc9339-0eea-4c18-812c-7965247ff4ae registered.
+Assigning PRESENCE a0bc9339-0eea-4c18-812c-7965247ff4ae to the least loaded Gateway...
+Assigned to Gateway 55b75bce-c682-433d-944a-50686e092b62
+Registering PRESENCE to Gateway 55b75bce-c682-433d-944a-50686e092b62...
+Successfully registered.
+Pinging Gateway fea7d37b-0310-403b-987a-367be0f70973...
+Ping successful.
+TEMPERATURE 00dda50c-aca2-45b7-be17-288bb3539bd2 registered.
+Assigning TEMPERATURE 00dda50c-aca2-45b7-be17-288bb3539bd2 to the least loaded Gateway...
+Assigned to Gateway b03af26c-7fb0-49f4-99a5-28518a7664ae
+Registering TEMPERATURE to Gateway b03af26c-7fb0-49f4-99a5-28518a7664ae...
+Successfully registered.
+Pinging Gateway b03af26c-7fb0-49f4-99a5-28518a7664ae...
+Ping successful.
+Pinging Gateway 55b75bce-c682-433d-944a-50686e092b62...
+Ping successful.
+Pinging Gateway fea7d37b-0310-403b-987a-367be0f70973...
+Ping successful.
+Pinging Gateway b03af26c-7fb0-49f4-99a5-28518a7664ae...
+Ping successful.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Load Balancer END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Gateway 1 START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Registering to Load Balancer...
+Successfully registered to Load Balancer.
+Registered BULB 1aac9c95-2e5e-4fc7-8f36-ceee441d45fc.
+Registered TEMPERATURE 00dda50c-aca2-45b7-be17-288bb3539bd2.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 5 ms.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 8 ms.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 2 ms.
+User entered the Resilient Home.
+Switched to HOME mode.
+Switching on all bulbs!
+State of BULB : On.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 4 ms.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 9 ms.
+State of TEMPERATURE : 69.26°F.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 3 ms.
+State of BULB : Off.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 1 ms.
+State of BULB : On.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 4 ms.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 2 ms.
+State of BULB : Off.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 2 ms.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 7 ms.
+State of TEMPERATURE : 76.59°F.
+Fetching previous Log entry from the DB.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 4 ms.
+Time taken to fetch data = 6 ms.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 10 ms.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 3 ms.
+User exited the Resilient Home.
+Switched to AWAY mode.
+Switching off all bulbs!
+Switching off all outlets!
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 3 ms.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 9 ms.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Gateway 1 END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~DB 1 START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Synced with other DBs.
+Synced with other DBs.
+Synced with other DBs.
+Syncing with other DBs.
+Synced with other DBs.
+Syncing with other DBs.
+Syncing with other DBs.
+Syncing with other DBs.
+Synced with other DBs.
+Syncing with other DBs.
+Synced with other DBs.
+Syncing with other DBs.
+Synced with other DBs.
+Synced with other DBs.
+Synced with other DBs.
+Synced with other DBs.
+Synced with other DBs.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~DB 1 END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Gateway 2 START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Registering to Load Balancer...
+Successfully registered to Load Balancer.
+Registered DOOR f172dabe-5f20-4e19-87f8-b1cc514837dd.
+Registered PRESENCE a0bc9339-0eea-4c18-812c-7965247ff4ae.
+State of DOOR : Open.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 7 ms.
+State of DOOR : Closed.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 2 ms.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 2 ms.
+User entered the Resilient Home.
+Switched to HOME mode.
+Switching on all bulbs!
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 8 ms.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 4 ms.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 4 ms.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 11 ms.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 5 ms.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 9 ms.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 3 ms.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 15 ms.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 6 ms.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 13 ms.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 4 ms.
+State of DOOR : Open.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 2 ms.
+User exited the Resilient Home.
+Switched to AWAY mode.
+Switching off all bulbs!
+Switching off all outlets!
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 2 ms.
+State of DOOR : Closed.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 7 ms.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Gateway 2 END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~DB 2 START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Syncing with other DBs.
+Syncing with other DBs.
+Synced with other DBs.
+Synced with other DBs.
+Synced with other DBs.
+Synced with other DBs.
+Synced with other DBs.
+Synced with other DBs.
+Synced with other DBs.
+Synced with other DBs.
+Synced with other DBs.
+Synced with other DBs.
+Synced with other DBs.
+Synced with other DBs.
+Syncing with other DBs.
+Synced with other DBs.
+Syncing with other DBs.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~DB 2 END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Gateway 3 START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Registering to Load Balancer...
+Successfully registered to Load Balancer.
+Registered MOTION 0b4a844c-c050-46dd-b7a9-1492f323b254.
+Registered OUTLET 8bc617a9-7dd4-4340-9903-5a1ef60bc086.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 6 ms.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 4 ms.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 2 ms.
+User entered the Resilient Home.
+Switched to HOME mode.
+Switching on all bulbs!
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 8 ms.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 12 ms.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 5 ms.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 4 ms.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 4 ms.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 2 ms.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 2 ms.
+State of OUTLET : On.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 8 ms.
+Fetching previous Log entry from the DB.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 10 ms.
+Time taken to fetch data = 5 ms.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 7 ms.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 8 ms.
+User exited the Resilient Home.
+Switched to AWAY mode.
+Switching off all bulbs!
+Switching off all outlets!
+State of OUTLET : Off.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 4 ms.
+Fetching previous Log entry from the DB.
+Time taken to fetch data = 5 ms.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Gateway 3 END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~DB 3 START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Synced with other DBs.
+Synced with other DBs.
+Syncing with other DBs.
+Synced with other DBs.
+Syncing with other DBs.
+Synced with other DBs.
+Synced with other DBs.
+Synced with other DBs.
+Syncing with other DBs.
+Synced with other DBs.
+Syncing with other DBs.
+Syncing with other DBs.
+Synced with other DBs.
+Syncing with other DBs.
+Synced with other DBs.
+Syncing with other DBs.
+Synced with other DBs.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~DB 3 END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Temperature Sensor START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Registering to Load Balancer...
+Assigned Gateway with address localhost:1100 by Load Balancer.
+Successfully registered to Load Balancer.
+New Temperature: 72.19°F.
+New Temperature: 80.44°F.
+New Temperature: 69.26°F.
+New Temperature: 68.24°F.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Temperature Sensor END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Motion Sensor START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Registering to Load Balancer...
+Assigned Gateway with address localhost:1300 by Load Balancer.
+Successfully registered to Load Balancer.
+Detected motion.
+Detected motion.
+Detected motion.
+Detected motion.
+Detected motion.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Motion Sensor END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Door Sensor START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Registering to Load Balancer...
+Assigned Gateway with address localhost:1200 by Load Balancer.
+Successfully registered to Load Balancer.
+Door opened.
+Door closed.
+Door opened.
+Door closed.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Door Sensor END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Presence Sensor START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Registering to Load Balancer...
+Assigned Gateway with address localhost:1200 by Load Balancer.
+Successfully registered to Load Balancer.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Presence Sensor END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Bulb START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Registering to Load Balancer...
+Assigned Gateway with address localhost:1100 by Load Balancer.
+Successfully registered to Load Balancer.
+BULB switched on.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Bulb END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Outlet START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Server started.
+Registering to Load Balancer...
+Assigned Gateway with address localhost:1300 by Load Balancer.
+Successfully registered to Load Balancer.
+OUTLET switched off.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Outlet END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~User START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Fetching the Map of all Registered IoTs from Load-Balancer...
+Successfully fetched.
+Opening the door.
+Closing the door.
+Moving around the Resilient Home.
+Randomly switching devices on and off, and randomly moving around, and randomly checking the temperature.
+Moving around the Resilient Home.
+Checking the Temperature.
+Toggling the BULB.
+Toggling the BULB.
+Moving around the Resilient Home.
+Toggling the BULB.
+Toggling the OUTLET.
+Moving around the Resilient Home.
+Checking the Temperature.
+Moving towards the door to leave the Resilient Home.
+Opening the door.
+Closing the door.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~User END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Log File 1 START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1492914593118`0`f172dabe-5f20-4e19-87f8-b1cc514837dd`0`2`null`Door opened.
+1492914593974`0`f172dabe-5f20-4e19-87f8-b1cc514837dd`0`2`null`Door closed.
+1492914594550`0`0b4a844c-c050-46dd-b7a9-1492f323b254`0`1`null`Motion detected.
+1492914594550`1`null`null`null`null`User entered the Resilient Home.
+1492914594621`0`1aac9c95-2e5e-4fc7-8f36-ceee441d45fc`1`null`0`BULB switched on.
+1492914595914`0`0b4a844c-c050-46dd-b7a9-1492f323b254`0`1`null`Motion detected.
+1492914595937`0`00dda50c-aca2-45b7-be17-288bb3539bd2`0`0`null`The temperature is 69.26°F.
+1492914598008`0`1aac9c95-2e5e-4fc7-8f36-ceee441d45fc`1`null`0`BULB switched off.
+1492914601434`0`1aac9c95-2e5e-4fc7-8f36-ceee441d45fc`1`null`0`BULB switched on.
+1492914602371`0`0b4a844c-c050-46dd-b7a9-1492f323b254`0`1`null`Motion detected.
+1492914604248`0`1aac9c95-2e5e-4fc7-8f36-ceee441d45fc`1`null`0`BULB switched off.
+1492914605574`0`8bc617a9-7dd4-4340-9903-5a1ef60bc086`1`null`1`OUTLET switched on.
+1492914606726`0`0b4a844c-c050-46dd-b7a9-1492f323b254`0`1`null`Motion detected.
+1492914606725`0`00dda50c-aca2-45b7-be17-288bb3539bd2`0`0`null`The temperature is 76.59°F.
+1492914607811`0`0b4a844c-c050-46dd-b7a9-1492f323b254`0`1`null`Motion detected.
+1492914608679`0`f172dabe-5f20-4e19-87f8-b1cc514837dd`0`2`null`Door opened.
+1492914608679`1`null`null`null`null`User exited the Resilient Home.
+1492914608730`0`8bc617a9-7dd4-4340-9903-5a1ef60bc086`1`null`1`OUTLET switched off.
+1492914609406`0`f172dabe-5f20-4e19-87f8-b1cc514837dd`0`2`null`Door closed.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Log File 1 END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Log File 2 START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1492914593118`0`f172dabe-5f20-4e19-87f8-b1cc514837dd`0`2`null`Door opened.
+1492914593974`0`f172dabe-5f20-4e19-87f8-b1cc514837dd`0`2`null`Door closed.
+1492914594550`0`0b4a844c-c050-46dd-b7a9-1492f323b254`0`1`null`Motion detected.
+1492914594550`1`null`null`null`null`User entered the Resilient Home.
+1492914594621`0`1aac9c95-2e5e-4fc7-8f36-ceee441d45fc`1`null`0`BULB switched on.
+1492914595914`0`0b4a844c-c050-46dd-b7a9-1492f323b254`0`1`null`Motion detected.
+1492914595937`0`00dda50c-aca2-45b7-be17-288bb3539bd2`0`0`null`The temperature is 69.26°F.
+1492914598008`0`1aac9c95-2e5e-4fc7-8f36-ceee441d45fc`1`null`0`BULB switched off.
+1492914601434`0`1aac9c95-2e5e-4fc7-8f36-ceee441d45fc`1`null`0`BULB switched on.
+1492914602371`0`0b4a844c-c050-46dd-b7a9-1492f323b254`0`1`null`Motion detected.
+1492914604248`0`1aac9c95-2e5e-4fc7-8f36-ceee441d45fc`1`null`0`BULB switched off.
+1492914605574`0`8bc617a9-7dd4-4340-9903-5a1ef60bc086`1`null`1`OUTLET switched on.
+1492914606726`0`0b4a844c-c050-46dd-b7a9-1492f323b254`0`1`null`Motion detected.
+1492914606725`0`00dda50c-aca2-45b7-be17-288bb3539bd2`0`0`null`The temperature is 76.59°F.
+1492914607811`0`0b4a844c-c050-46dd-b7a9-1492f323b254`0`1`null`Motion detected.
+1492914608679`0`f172dabe-5f20-4e19-87f8-b1cc514837dd`0`2`null`Door opened.
+1492914608679`1`null`null`null`null`User exited the Resilient Home.
+1492914608730`0`8bc617a9-7dd4-4340-9903-5a1ef60bc086`1`null`1`OUTLET switched off.
+1492914609406`0`f172dabe-5f20-4e19-87f8-b1cc514837dd`0`2`null`Door closed.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Log File 2 END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Log File 3 START~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1492914593118`0`f172dabe-5f20-4e19-87f8-b1cc514837dd`0`2`null`Door opened.
+1492914593974`0`f172dabe-5f20-4e19-87f8-b1cc514837dd`0`2`null`Door closed.
+1492914594550`0`0b4a844c-c050-46dd-b7a9-1492f323b254`0`1`null`Motion detected.
+1492914594550`1`null`null`null`null`User entered the Resilient Home.
+1492914594621`0`1aac9c95-2e5e-4fc7-8f36-ceee441d45fc`1`null`0`BULB switched on.
+1492914595914`0`0b4a844c-c050-46dd-b7a9-1492f323b254`0`1`null`Motion detected.
+1492914595937`0`00dda50c-aca2-45b7-be17-288bb3539bd2`0`0`null`The temperature is 69.26°F.
+1492914598008`0`1aac9c95-2e5e-4fc7-8f36-ceee441d45fc`1`null`0`BULB switched off.
+1492914601434`0`1aac9c95-2e5e-4fc7-8f36-ceee441d45fc`1`null`0`BULB switched on.
+1492914602371`0`0b4a844c-c050-46dd-b7a9-1492f323b254`0`1`null`Motion detected.
+1492914604248`0`1aac9c95-2e5e-4fc7-8f36-ceee441d45fc`1`null`0`BULB switched off.
+1492914605574`0`8bc617a9-7dd4-4340-9903-5a1ef60bc086`1`null`1`OUTLET switched on.
+1492914606726`0`0b4a844c-c050-46dd-b7a9-1492f323b254`0`1`null`Motion detected.
+1492914606725`0`00dda50c-aca2-45b7-be17-288bb3539bd2`0`0`null`The temperature is 76.59°F.
+1492914607811`0`0b4a844c-c050-46dd-b7a9-1492f323b254`0`1`null`Motion detected.
+1492914608679`0`f172dabe-5f20-4e19-87f8-b1cc514837dd`0`2`null`Door opened.
+1492914608679`1`null`null`null`null`User exited the Resilient Home.
+1492914608730`0`8bc617a9-7dd4-4340-9903-5a1ef60bc086`1`null`1`OUTLET switched off.
+1492914609406`0`f172dabe-5f20-4e19-87f8-b1cc514837dd`0`2`null`Door closed.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Log File 3 END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

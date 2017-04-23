@@ -155,6 +155,10 @@ Time taken to fetch data = 0 ms.
 Fetching previous Log entry from the Cache.
 Time taken to fetch data = 0 ms.
 State of DOOR : Closed.
+User exited the Resilient Home.
+Switched to AWAY mode.
+Switching off all bulbs!
+Switching off all outlets!
 Fetching previous Log entry from the Cache.
 Time taken to fetch data = 0 ms.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Gateway 1 END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

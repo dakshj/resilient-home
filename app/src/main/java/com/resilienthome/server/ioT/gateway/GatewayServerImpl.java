@@ -88,12 +88,18 @@ public class GatewayServerImpl extends IoTServerImpl implements GatewayServer {
     public void reportState(final long time, final IoT ioT, final boolean reportFromSensorOrDevice)
             throws RemoteException {
         if (reportFromSensorOrDevice) {
-            try {
-                LoadBalancerServer.connect(getGatewayConfig().getLoadBalancerAddress())
-                        .broadcastStateToAllGateways(getIoT(), time, ioT);
-            } catch (NotBoundException e) {
-                e.printStackTrace();
-            }
+            new Thread(() -> {
+                try {
+                    try {
+                        LoadBalancerServer.connect(getGatewayConfig().getLoadBalancerAddress())
+                                .broadcastStateToAllGateways(getIoT(), time, ioT);
+                    } catch (RemoteException e) {
+                        e.printStackTrace();
+                    }
+                } catch (NotBoundException e) {
+                    e.printStackTrace();
+                }
+            }).start();
         }
 
         DbServer dbServer = null;
